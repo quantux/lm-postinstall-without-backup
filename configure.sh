@@ -20,21 +20,21 @@ flatpak install -y --noninteractive flathub com.github.calo001.fondo
 flatpak install -y --noninteractive com.github.donadigo.appeditor
 
 # Install Chrome + Bitwarden
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-apt install -y ./google-chrome-stable_current_amd64.deb
+wget "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" -O google-chrome.deb
+apt install -y ./google-chrome.deb
 
-install_chrome_extension () {
-  preferences_dir_path="/opt/google/chrome/extensions"
-  pref_file_path="$preferences_dir_path/$1.json"
-  upd_url="https://clients2.google.com/service/update2/crx"
-  mkdir -p "$preferences_dir_path"
-  echo "{" > "$pref_file_path"
-  echo "  \"external_update_url\": \"$upd_url\"" >> "$pref_file_path"
-  echo "}" >> "$pref_file_path"
-  echo Added \""$pref_file_path"\" ["$2"]
-}
+# install_chrome_extension () {
+#   preferences_dir_path="/opt/google/chrome/extensions"
+#   pref_file_path="$preferences_dir_path/$1.json"
+#   upd_url="https://clients2.google.com/service/update2/crx"
+#   mkdir -p "$preferences_dir_path"
+#   echo "{" > "$pref_file_path"
+#   echo "  \"external_update_url\": \"$upd_url\"" >> "$pref_file_path"
+#   echo "}" >> "$pref_file_path"
+#   echo Added \""$pref_file_path"\" ["$2"]
+# }
 
-install_chrome_extension "nngceckbapebfimnlniiiahkandclblb" "Bitwarden"
+# install_chrome_extension "nngceckbapebfimnlniiiahkandclblb" "Bitwarden"
 
 # Install - Adapta Nokto Fonts
 wget "https://fonts.google.com/download?family=Roboto" -O roboto.zip
@@ -81,7 +81,7 @@ wget "https://download.teamviewer.com/download/linux/teamviewer_amd64.deb" -O te
 apt install -y ./teamviewer.deb
 
 # Install Dropbox
-wget "https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2020.03.04_amd64.deb" -O dropbox.deb
+wget "https://linux.dropbox.com/packages/ubuntu/dropbox_2020.03.04_amd64.deb" -O dropbox.deb
 apt install -y ./dropbox.deb
 
 # Fix apt configure
