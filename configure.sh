@@ -50,7 +50,8 @@ wget "https://launchpadlibrarian.net/391325176/adapta-gtk-theme_3.95.0.11-0ubunt
 apt install -y adapta-gtk-theme.deb
 
 # Install Sweet Theme
-git clone https://github.com/EliverLara/Sweet /usr/share/themes/
+tar -xf Sweet-mars-v40.tar.xz
+mv Sweet-mars-v40 /usr/share/themes/
 
 # La Capitaine icons
 git clone https://github.com/keeferrourke/la-capitaine-icon-theme /usr/share/icons/la-capitaine
@@ -94,4 +95,13 @@ apt update
 rm -f packages.microsoft.gpg
 apt install code -y
 
-#
+# Set wallpaper
+gsettings set org.cinnamon.desktop.background picture-uri "file:///$PWD/wallpaper.jpg"
+
+# Set themes
+gsettings set org.cinnamon.desktop.interface icon-theme 'la-capitaine' # set icons
+gsettings set org.cinnamon.theme name "Adapta-Nokto" # set área de trabalho
+gsettings set org.cinnamon.desktop.interface gtk-theme 'Sweet-mars-v40' # set aplicativos
+gsettings set org.cinnamon.desktop.interface cursor-theme 'Adwaita' # set cursor theme
+
+
