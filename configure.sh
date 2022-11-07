@@ -7,7 +7,7 @@ apt update && apt upgrade -y
 dpkg --add-architecture i386
 
 # Install apt packages
-apt install -y build-essential zsh git curl wget gpg apt-transport-https preload blender deepin-icon-theme vim gimp  blender cheese sublime-text screenfetch python2 python3 python3-gpg python3-pip inkscape virtualbox virtualbox-qt vlc filezilla steam gparted pinta nmap traceroute vlc ttf-mscorefonts-installer p7zip-full okular unrar rar bleachbit ubuntu-restricted-extras libdvd-pkg tlp tp-smapi-dkms acpi-call-dkms gimp-help-pt fonts-powerline calibre gnome-boxes audacity kazam htop neofetch openshot-qt python3-setuptools scrcpy whois gnupg2 software-properties-common libncurses5-dev libgmp-dev libmysqlclient-dev remmina tree obs-studio pavucontrol gir1.2-gmenu-3.0 jstest-gtk speedtest-cli pv neovim wireshark clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev xclip;
+apt install -y build-essential zsh tmux git curl wget gpg apt-transport-https preload blender deepin-icon-theme vim gedit gimp flameshot fonts-firacode blender cheese sublime-text screenfetch python2 python3 python3-gpg python3-pip inkscape virtualbox virtualbox-qt virtualbox-guest-x11 vlc filezilla steam gparted pinta nmap traceroute vlc ttf-mscorefonts-installer p7zip-full okular unrar rar bleachbit ubuntu-restricted-extras libdvd-pkg tlp tp-smapi-dkms acpi-call-dkms gimp-help-pt fonts-powerline calibre gnome-boxes audacity kazam htop neofetch openshot-qt python3-setuptools scrcpy whois gnupg2 software-properties-common libncurses5-dev libgmp-dev libmysqlclient-dev remmina tree obs-studio pavucontrol gir1.2-gmenu-3.0 jstest-gtk speedtest-cli pv neovim wireshark clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev xclip
 
 # Reconfigure libdvd-pkg
 dpkg-reconfigure libdvd-pkg
@@ -21,20 +21,7 @@ flatpak install -y --noninteractive com.github.donadigo.appeditor
 
 # Install Chrome + Bitwarden
 wget "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" -O google-chrome.deb
-apt install -y ./google-chrome.deb
-
-# install_chrome_extension () {
-#   preferences_dir_path="/opt/google/chrome/extensions"
-#   pref_file_path="$preferences_dir_path/$1.json"
-#   upd_url="https://clients2.google.com/service/update2/crx"
-#   mkdir -p "$preferences_dir_path"
-#   echo "{" > "$pref_file_path"
-#   echo "  \"external_update_url\": \"$upd_url\"" >> "$pref_file_path"
-#   echo "}" >> "$pref_file_path"
-#   echo Added \""$pref_file_path"\" ["$2"]
-# }
-
-# install_chrome_extension "nngceckbapebfimnlniiiahkandclblb" "Bitwarden"
+dpkg -i google-chrome.deb
 
 # Install - Adapta Nokto Fonts
 wget "https://fonts.google.com/download?family=Roboto" -O roboto.zip
@@ -47,7 +34,7 @@ mv Roboto Noto_Sans /usr/share/fonts/
 
 # Install - Adapta Nokto theme
 wget "https://launchpadlibrarian.net/391325176/adapta-gtk-theme_3.95.0.11-0ubuntu1~bionic1_all.deb" -O adapta-gtk-theme.deb
-apt install -y ./adapta-gtk-theme.deb
+dpkg -i adapta-gtk-theme.deb
 
 # Install Sweet Theme
 tar -xf Sweet-mars-v40.tar.xz
@@ -74,11 +61,11 @@ git clone https://github.com/asdf-vm/asdf.git ~/.asdf
 
 # Install Teamviewer
 wget "https://download.teamviewer.com/download/linux/teamviewer_amd64.deb" -O teamviewer.deb
-apt install -y ./teamviewer.deb
+dpkg -i teamviewer.deb
 
 # Install Dropbox
 wget "https://linux.dropbox.com/packages/ubuntu/dropbox_2020.03.04_amd64.deb" -O dropbox.deb
-apt install -y ./dropbox.deb
+dpkg -i dropbox.deb
 
 # Fix apt configure
 apt install -f -y
@@ -96,10 +83,10 @@ apt install code -y
 RUID=$(who | awk 'FNR == 1 {print $1}')
 RUSER_UID=$(id -u ${RUID})
 sudo -u ${RUID} DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.cinnamon.desktop.background picture-uri "file:///$PWD/wallpaper.jpg"
-sudo -u ${RUID} DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.cinnamon.desktop.interface icon-theme 'la-capitaine' # set icons
-sudo -u ${RUID} DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.cinnamon.theme name 'Adapta-Nokto' # set área de trabalho
-sudo -u ${RUID} DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.cinnamon.desktop.interface gtk-theme 'Sweet-mars-v40' # set aplicativos
-sudo -u ${RUID} DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.cinnamon.desktop.interface cursor-theme 'Adwaita' # set cursor theme
+# sudo -u ${RUID} DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.cinnamon.theme name 'Adapta-Nokto' # set área de trabalho
+# sudo -u ${RUID} DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.cinnamon.desktop.interface icon-theme 'la-capitaine' # set icons
+# sudo -u ${RUID} DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.cinnamon.desktop.interface gtk-theme 'Sweet-mars-v40' # set aplicativos
+# sudo -u ${RUID} DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.cinnamon.desktop.interface cursor-theme 'Adwaita' # set cursor theme
 
 # Home folder - config files
 git clone https://github.com/quantux/home /tmp/home
