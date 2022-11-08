@@ -65,10 +65,6 @@ exec='gnome-calculator'
 [org/cinnamon/desktop/applications/terminal]
 exec='gnome-terminal'
 
-[org/cinnamon/desktop/background]
-picture-options='zoom'
-picture-uri='file:///home/mths/.var/app/com.github.calo001.fondo/data/backgrounds/Sunny Haccan_reaKJPg2qKg.jpeg'
-
 [org/cinnamon/desktop/background/slideshow]
 delay=15
 image-source='xml:///usr/share/cinnamon-background-properties/linuxmint-vanessa.xml'
@@ -190,15 +186,8 @@ dwell-time=1.2
 secondary-click-enabled=false
 secondary-click-time=1.2
 
-[org/gnome/desktop/background]
-picture-options='zoom'
-picture-uri='file:///home/mths/.var/app/com.github.calo001.fondo/data/backgrounds/Sunny Haccan_reaKJPg2qKg.jpeg'
-
 [org/gnome/desktop/interface]
 toolkit-accessibility=false
-
-[org/gnome/desktop/screensaver]
-picture-uri='file:///home/mths/.var/app/com.github.calo001.fondo/data/backgrounds/Sunny Haccan_reaKJPg2qKg.jpeg'
 
 [org/gnome/evolution-data-server]
 migrated=true
@@ -206,11 +195,6 @@ network-monitor-gio-name=''
 
 [org/gnome/file-roller/listing]
 show-path=false
-
-[org/gnome/gnome-screenshot]
-delay=0
-include-pointer=false
-last-save-directory='file:///home/mths/%C3%81rea%20de%20Trabalho'
 
 [org/gnome/terminal/legacy]
 default-show-menubar=false
@@ -262,11 +246,6 @@ start-with-sidebar=true
 
 [org/x/editor/plugins]
 active-plugins=['joinlines', 'sort', 'modelines', 'bracketcompletion', 'textsize', 'spell', 'filebrowser', 'open-uri-context-menu', 'docinfo', 'time']
-
-[org/x/editor/plugins/filebrowser/on-load]
-root='file:///'
-tree-view=true
-virtual-root='file:///home/mths/%C3%81rea%20de%20Trabalho'
 
 [org/x/editor/preferences/ui]
 statusbar-visible=true
