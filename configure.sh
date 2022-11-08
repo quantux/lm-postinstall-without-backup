@@ -105,3 +105,6 @@ sudo -u ${RUID} dconf load / < dconf_cinnamon_settings
 # Cinnamon menu
 mv cinnamon-menu.json /home/${RUID}/.cinnamon/configs/menu@cinnamon.org/0.json
 
+# Cinnamon panel launcher
+mv panel-launcher-cinnamon.json /home/${RUID}/.cinnamon/configs/panel-launchers@cinnamon.org/15.json
+
