@@ -79,13 +79,38 @@ wget "https://linux.dropbox.com/packages/ubuntu/dropbox_2020.03.04_amd64.deb" -O
 dpkg -i dropbox.deb
 apt install -fy
 
-# Install Vscode
+# Install VSCode
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
 sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
 apt update
 rm -f packages.microsoft.gpg
 apt install code -y
+
+# Install VSCode extensions
+code --install-extension bceskavich.theme-dracula-at-night
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension dracula-theme.theme-dracula
+code --install-extension ecmel.vscode-html-css
+code --install-extension emmanuelbeziat.vscode-great-icons
+code --install-extension esbenp.prettier-vscode
+code --install-extension formulahendry.code-runner
+code --install-extension MS-CEINTL.vscode-language-pack-pt-BR
+code --install-extension ms-dotnettools.csharp
+code --install-extension ms-python.isort
+code --install-extension ms-python.python
+code --install-extension ms-python.vscode-pylance
+code --install-extension ms-toolsai.jupyter
+code --install-extension ms-toolsai.jupyter-keymap
+code --install-extension ms-toolsai.jupyter-renderers
+code --install-extension ms-toolsai.vscode-jupyter-cell-tags
+code --install-extension ms-toolsai.vscode-jupyter-slideshow
+code --install-extension PROxZIMA.sweetdracula
+code --install-extension softwaredotcom.swdc-vscode
+code --install-extension xabikos.JavaScriptSnippets
+
+# Copy VSCode settings (theme, font)
+mv -f vscode-settings.json /home/mths/.config/Code/User/settings.json 
 
 # Set themes and wallpaper
 sudo -u ${RUID} DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.cinnamon.desktop.background picture-uri "file:///$PWD/wallpaper.jpg"
