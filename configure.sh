@@ -184,8 +184,9 @@ user_do 'DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettin
 
 # Home folder - config files
 show_message "Copiando arquivos de configuração para a pasta home"
+shopt -s dotglob
 git clone https://github.com/quantux/home /tmp/home
-user_do 'mv -f /tmp/home/.* ~/'
+user_do 'mv /tmp/home/* ~/'
 
 # Install vim-plug
 show_message "Instalando Vim-Plug"
