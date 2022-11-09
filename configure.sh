@@ -1,10 +1,11 @@
 #!/bin/bash
 
 LightColor='\033[1;32m'
+NC='\033[0m'
 
 show_message() {
     clear
-    printf "${LightColor}$1\n\n"
+    printf "${LightColor}$1${NC}\n\n"
 }
 
 # Get current regular user (not sudo user)
