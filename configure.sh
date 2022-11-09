@@ -26,7 +26,7 @@ deb http://ubuntu-archive.locaweb.com.br/ubuntu $ubuntu_codename main restricted
 deb http://ubuntu-archive.locaweb.com.br/ubuntu $ubuntu_codename-updates main restricted universe multiverse\n\
 deb http://ubuntu-archive.locaweb.com.br/ubuntu $ubuntu_codename-backports main restricted universe multiverse\n\n\
 deb http://security.ubuntu.com/ubuntu/ $ubuntu_codename-security main restricted universe multiverse"
-user_do "echo -e '$mirrors' > ~/official-package-repositories.list"
+echo -e $mirrors > /etc/apt/sources.list.d/official-package-repositories.list
 
 # Update
 show_message "Atualizando repositórios"
@@ -93,12 +93,6 @@ mv Sweet-mars-v40 /usr/share/themes/
 show_message "Instalando ícones La-Capitaine"
 git clone https://github.com/keeferrourke/la-capitaine-icon-theme /usr/share/icons/la-capitaine
 
-# Disable; Recent 
-show_message "Desabilitando arquivos recentes (recent files)"
-user_do 'rm ~/.local/share/recently-used.xbel'
-user_do 'touch ~/.local/share/recently-used.xbel'
-user_do 'chattr +i ~/.local/share/recently-used.xbel'
-
 # WPS Office Fonts
 show_message "Instalando fontes para o WPS Office"
 git clone https://github.com/udoyen/wps-fonts.git /tmp/wps-fonts
@@ -126,32 +120,38 @@ rm -f packages.microsoft.gpg
 apt install code -y
 
 # Install VSCode extensions
-show_message "Instalando extensões do VSCode"
-user_do 'code --install-extension bceskavich.theme-dracula-at-night'
-user_do 'code --install-extension dbaeumer.vscode-eslint'
-user_do 'code --install-extension dracula-theme.theme-dracula'
-user_do 'code --install-extension ecmel.vscode-html-css'
-user_do 'code --install-extension emmanuelbeziat.vscode-great-icons'
-user_do 'code --install-extension esbenp.prettier-vscode'
-user_do 'code --install-extension formulahendry.code-runner'
-user_do 'code --install-extension MS-CEINTL.vscode-language-pack-pt-BR'
-user_do 'code --install-extension ms-dotnettools.csharp'
-user_do 'code --install-extension ms-python.isort'
-user_do 'code --install-extension ms-python.python'
-user_do 'code --install-extension ms-python.vscode-pylance'
-user_do 'code --install-extension ms-toolsai.jupyter'
-user_do 'code --install-extension ms-toolsai.jupyter-keymap'
-user_do 'code --install-extension ms-toolsai.jupyter-renderers'
-user_do 'code --install-extension ms-toolsai.vscode-jupyter-cell-tags'
-user_do 'code --install-extension ms-toolsai.vscode-jupyter-slideshow'
-user_do 'code --install-extension PROxZIMA.sweetdracula'
-user_do 'code --install-extension softwaredotcom.swdc-vscode'
-user_do 'code --install-extension xabikos.JavaScriptSnippets'
+# show_message "Instalando extensões do VSCode"
+# user_do 'code --install-extension bceskavich.theme-dracula-at-night'
+# user_do 'code --install-extension dbaeumer.vscode-eslint'
+# user_do 'code --install-extension dracula-theme.theme-dracula'
+# user_do 'code --install-extension ecmel.vscode-html-css'
+# user_do 'code --install-extension emmanuelbeziat.vscode-great-icons'
+# user_do 'code --install-extension esbenp.prettier-vscode'
+# user_do 'code --install-extension formulahendry.code-runner'
+# user_do 'code --install-extension MS-CEINTL.vscode-language-pack-pt-BR'
+# user_do 'code --install-extension ms-dotnettools.csharp'
+# user_do 'code --install-extension ms-python.isort'
+# user_do 'code --install-extension ms-python.python'
+# user_do 'code --install-extension ms-python.vscode-pylance'
+# user_do 'code --install-extension ms-toolsai.jupyter'
+# user_do 'code --install-extension ms-toolsai.jupyter-keymap'
+# user_do 'code --install-extension ms-toolsai.jupyter-renderers'
+# user_do 'code --install-extension ms-toolsai.vscode-jupyter-cell-tags'
+# user_do 'code --install-extension ms-toolsai.vscode-jupyter-slideshow'
+# user_do 'code --install-extension PROxZIMA.sweetdracula'
+# user_do 'code --install-extension softwaredotcom.swdc-vscode'
+# user_do 'code --install-extension xabikos.JavaScriptSnippets'
 
-# Copy VSCode settings (theme, font)
-show_message "Copiando configurações do VSCode"
-user_do 'mkdir -p ~/.config/Code/User/'
-user_do 'mv -f vscode-settings.json ~/.config/Code/User/settings.json'
+# # Disable; Recent 
+# show_message "Desabilitando arquivos recentes (recent files)"
+# user_do 'rm ~/.local/share/recently-used.xbel'
+# user_do 'touch ~/.local/share/recently-used.xbel'
+# user_do 'chattr +i ~/.local/share/recently-used.xbel'
+
+# # Copy VSCode settings (theme, font)
+# show_message "Copiando configurações do VSCode"
+# user_do 'mkdir -p ~/.config/Code/User/'
+# user_do 'mv -f vscode-settings.json ~/.config/Code/User/settings.json'
 
 # # Install ASDF
 # show_message "Instalando ASDF"
