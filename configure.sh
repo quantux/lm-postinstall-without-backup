@@ -141,49 +141,49 @@ show_message "Copiando configurações do VSCode"
 user_do 'mkdir -p ~/.config/Code/User/'
 user_do 'mv -f vscode-settings.json ~/.config/Code/User/settings.json'
 
-# Install ASDF
-show_message "Instalando ASDF"
-user_do 'git clone https://github.com/asdf-vm/asdf.git ~/.asdf'
+# # Install ASDF
+# show_message "Instalando ASDF"
+# user_do 'git clone https://github.com/asdf-vm/asdf.git ~/.asdf'
 
-# Oh-my-zsh
-show_message "Instalando oh-my-zsh"
-user_do 'curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh'
+# # Oh-my-zsh
+# show_message "Instalando oh-my-zsh"
+# user_do 'curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh'
 
-# oh-my-posh
-show_message "Instalando oh-my-posh"
-wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
-chmod +x /usr/local/bin/oh-my-posh
-user_do 'mkdir ~/.poshthemes'
-user_do 'wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O ~/.poshthemes/themes.zip'
-user_do 'unzip ~/.poshthemes/themes.zip -d ~/.poshthemes'
-user_do 'chmod u+rw ~/.poshthemes/*.omp.*'
-user_do 'rm ~/.poshthemes/themes.zip'
+# # oh-my-posh
+# show_message "Instalando oh-my-posh"
+# wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+# chmod +x /usr/local/bin/oh-my-posh
+# user_do 'mkdir ~/.poshthemes'
+# user_do 'wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O ~/.poshthemes/themes.zip'
+# user_do 'unzip ~/.poshthemes/themes.zip -d ~/.poshthemes'
+# user_do 'chmod u+rw ~/.poshthemes/*.omp.*'
+# user_do 'rm ~/.poshthemes/themes.zip'
 
-# Set themes and wallpaper
-show_message "Aplicando Wallpaper"
-user_do 'DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.cinnamon.desktop.background picture-uri "file:///$PWD/wallpaper.jpg"'
+# # Set themes and wallpaper
+# show_message "Aplicando Wallpaper"
+# user_do 'DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.cinnamon.desktop.background picture-uri "file:///$PWD/wallpaper.jpg"'
 
-# Home folder - config files
-show_message "Copiando arquivos de configuração para a pasta home"
-git clone https://github.com/quantux/home /tmp/home
-user_do 'mv -f /tmp/home/.* ~/'
+# # Home folder - config files
+# show_message "Copiando arquivos de configuração para a pasta home"
+# git clone https://github.com/quantux/home /tmp/home
+# user_do 'mv -f /tmp/home/.* ~/'
 
-# Install vim-plug
-show_message "Instalando Vim-Plug"
-user_do 'curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-user_do 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-user_do 'vim -c :PlugInstall -c :q -c :q'
+# # Install vim-plug
+# show_message "Instalando Vim-Plug"
+# user_do 'curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+# user_do 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+# user_do 'vim -c :PlugInstall -c :q -c :q'
 
-# Cinnamon menu
-show_message "Copiando arquivos tema do cinnamon-menu"
-user_do 'mkdir -p ~/.cinnamon/configs/menu@cinnamon.org/'
-user_do 'mv cinnamon-menu.json ~/.cinnamon/configs/menu@cinnamon.org/0.json'
+# # Cinnamon menu
+# show_message "Copiando arquivos tema do cinnamon-menu"
+# user_do 'mkdir -p ~/.cinnamon/configs/menu@cinnamon.org/'
+# user_do 'mv cinnamon-menu.json ~/.cinnamon/configs/menu@cinnamon.org/0.json'
 
-# Cinnamon panel launcher
-show_message "Copiando arquivos tema do panel-launcher-cinnamon"
-user_do 'mkdir -p ~/.cinnamon/configs/panel-launchers@cinnamon.org/'
-user_do 'mv panel-launcher-cinnamon.json ~/.cinnamon/configs/panel-launchers@cinnamon.org/15.json'
+# # Cinnamon panel launcher
+# show_message "Copiando arquivos tema do panel-launcher-cinnamon"
+# user_do 'mkdir -p ~/.cinnamon/configs/panel-launchers@cinnamon.org/'
+# user_do 'mv panel-launcher-cinnamon.json ~/.cinnamon/configs/panel-launchers@cinnamon.org/15.json'
 
-# Load dconf file
-show_message "Carregando configurações do dconf"
-user_do 'dconf load / < dconf_cinnamon_settings'
+# # Load dconf file
+# show_message "Carregando configurações do dconf"
+# user_do 'dconf load / < dconf_cinnamon_settings'
