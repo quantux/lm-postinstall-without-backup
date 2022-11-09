@@ -112,10 +112,6 @@ wget "https://linux.dropbox.com/packages/ubuntu/dropbox_2020.03.04_amd64.deb" -O
 dpkg -i dropbox.deb
 apt install -fy
 
-# Install ASDF
-show_message "Instalando ASDF"
-sudo -u ${RUID} /bin/bash -c 'git clone https://github.com/asdf-vm/asdf.git ~/.asdf'
-
 # Install VSCode
 show_message "Instalando VSCode"
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
@@ -148,6 +144,10 @@ sudo -u ${RUID} /bin/bash -c code --install-extension PROxZIMA.sweetdracula
 sudo -u ${RUID} /bin/bash -c code --install-extension softwaredotcom.swdc-vscode
 sudo -u ${RUID} /bin/bash -c code --install-extension xabikos.JavaScriptSnippets
 
+# Install ASDF
+show_message "Instalando ASDF"
+sudo -u ${RUID} /bin/bash -c 'git clone https://github.com/asdf-vm/asdf.git ~/.asdf'
+
 # Copy VSCode settings (theme, font)
 show_message "Copiando configurações do VSCode"
 mkdir -p /home/${RUID}/.config/Code/User/
@@ -160,7 +160,7 @@ sudo -u ${RUID} /bin/bash -c 'DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RU
 # Home folder - config files
 show_message "Copiando arquivos de configuração para a pasta home"
 git clone https://github.com/quantux/home /tmp/home
-rsync -av /tmp/home/ /home/${RUID}/
+mv -f /tmp/home/.* /home/${RUID}/
 
 # Install vim-plug
 show_message "Instalando Vim-Plug"
