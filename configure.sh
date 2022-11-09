@@ -13,8 +13,20 @@ show_message() {
 }
 
 user_do() {
-    sudo -u ${RUID} /bin/bash -c  $1
+    sudo -u ${RUID} /bin/bash -c "$1"
 }
+
+# Set mirrors
+show_message "Atualizando mirrors"
+rm /etc/apt/sources.list.d/official-package-repositories.list
+linuxmint_codename=$(lsb_release -cs)
+ubuntu_codename=$(cat /etc/upstream-release/lsb-release | grep DISTRIB_CODENAME= | cut -f2 -d "=")
+mirrors="deb https://mint.itsbrasil.net/packages $linuxmint_codename main upstream import backport \n\n\
+deb http://ubuntu-archive.locaweb.com.br/ubuntu $ubuntu_codename main restricted universe multiverse\n\
+deb http://ubuntu-archive.locaweb.com.br/ubuntu $ubuntu_codename-updates main restricted universe multiverse\n\
+deb http://ubuntu-archive.locaweb.com.br/ubuntu $ubuntu_codename-backports main restricted universe multiverse\n\n\
+deb http://security.ubuntu.com/ubuntu/ $ubuntu_codename-security main restricted universe multiverse"
+user_do "echo -e '$mirrors' > ~/official-package-repositories.list"
 
 # Update
 show_message "Atualizando repositórios"
@@ -30,7 +42,7 @@ dpkg --add-architecture i386
 
 # Install apt packages
 show_message "Instalando pacotes"
-apt install -y build-essential zsh tmux git curl wget gpg apt-transport-https preload blender vim gedit gimp flameshot fonts-firacode blender cheese sublime-text screenfetch python2 python3 python3-gpg python3-pip inkscape virtualbox virtualbox-qt virtualbox-guest-x11 vlc filezilla steam gparted pinta nmap traceroute vlc ttf-mscorefonts-installer p7zip-full okular unrar rar bleachbit ubuntu-restricted-extras libdvd-pkg tlp tp-smapi-dkms acpi-call-dkms gimp-help-pt fonts-powerline calibre gnome-boxes audacity kazam htop neofetch openshot-qt python3-setuptools scrcpy whois gnupg2 software-properties-common libncurses5-dev libgmp-dev libmysqlclient-dev remmina tree obs-studio pavucontrol gir1.2-gmenu-3.0 jstest-gtk speedtest-cli pv neovim wireshark clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev xclip
+apt install -y build-essential zsh tmux git curl wget gpg apt-transport-https preload blender vim gedit gimp flameshot fonts-firacode blender cheese sublime-text screenfetch python2 python3 python3-gpg python3-pip python-setuptools inkscape virtualbox virtualbox-qt virtualbox-guest-x11 vlc filezilla steam gparted pinta nmap traceroute vlc ttf-mscorefonts-installer p7zip-full okular unrar rar bleachbit ubuntu-restricted-extras libdvd-pkg tlp tp-smapi-dkms acpi-call-dkms gimp-help-pt fonts-powerline calibre gnome-boxes audacity kazam htop neofetch openshot-qt python3-setuptools scrcpy whois gnupg2 software-properties-common libncurses5-dev libgmp-dev libmysqlclient-dev remmina tree obs-studio pavucontrol gir1.2-gmenu-3.0 jstest-gtk speedtest-cli pv neovim wireshark clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev xclip
 
 # Reconfigure libdvd-pkg
 show_message "Reconfigurando libdvd-pkg"
