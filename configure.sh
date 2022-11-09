@@ -3,19 +3,24 @@
 LightColor='\033[1;32m'
 NC='\033[0m'
 
+# Get current regular user (not sudo user)
+RUID=$(who | awk 'FNR == 1 {print $1}')
+RUSER_UID=$(id -u ${RUID})
+
 show_message() {
     clear
     printf "${LightColor}$1${NC}\n\n"
 }
 
-# Get current regular user (not sudo user)
-RUID=$(who | awk 'FNR == 1 {print $1}')
-RUSER_UID=$(id -u ${RUID})
+user_do() {
+    sudo -u ${RUID} /bin/bash -c  $1
+}
 
-# Update + Upgrade
+# Update
 show_message "Atualizando repositórios"
 apt update
 
+# Upgrade
 show_message "Atualizando pacotes"
 apt upgrade -y
 
@@ -72,23 +77,9 @@ show_message "Instalando Sweet Theme"
 tar -xf Sweet-mars-v40.tar.xz
 mv Sweet-mars-v40 /usr/share/themes/
 
-# La Capitaine icons
+# La-Capitaine Icons
 show_message "Instalando ícones La-Capitaine"
 git clone https://github.com/keeferrourke/la-capitaine-icon-theme /usr/share/icons/la-capitaine
-
-# Oh-my-zsh
-show_message "Instalando oh-my-zsh"
-sudo -u ${RUID} /bin/bash -c 'curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh'
-
-# oh-my-posh
-show_message "Instalando oh-my-posh"
-wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
-chmod +x /usr/local/bin/oh-my-posh
-mkdir ~/.poshthemes
-sudo -u ${RUID} /bin/bash -c 'wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O ~/.poshthemes/themes.zip'
-sudo -u ${RUID} /bin/bash -c 'unzip ~/.poshthemes/themes.zip -d ~/.poshthemes'
-chmod u+rw ~/.poshthemes/*.omp.*
-rm ~/.poshthemes/themes.zip
 
 # Disable; Recent 
 show_message "Desabilitando arquivos recentes (recent files)"
@@ -124,39 +115,53 @@ apt install code -y
 
 # Install VSCode extensions
 show_message "Instalando extensões do VSCode"
-sudo -u ${RUID} /bin/bash -c code --install-extension bceskavich.theme-dracula-at-night
-sudo -u ${RUID} /bin/bash -c code --install-extension dbaeumer.vscode-eslint
-sudo -u ${RUID} /bin/bash -c code --install-extension dracula-theme.theme-dracula
-sudo -u ${RUID} /bin/bash -c code --install-extension ecmel.vscode-html-css
-sudo -u ${RUID} /bin/bash -c code --install-extension emmanuelbeziat.vscode-great-icons
-sudo -u ${RUID} /bin/bash -c code --install-extension esbenp.prettier-vscode
-sudo -u ${RUID} /bin/bash -c code --install-extension formulahendry.code-runner
-sudo -u ${RUID} /bin/bash -c code --install-extension MS-CEINTL.vscode-language-pack-pt-BR
-sudo -u ${RUID} /bin/bash -c code --install-extension ms-dotnettools.csharp
-sudo -u ${RUID} /bin/bash -c code --install-extension ms-python.isort
-sudo -u ${RUID} /bin/bash -c code --install-extension ms-python.python
-sudo -u ${RUID} /bin/bash -c code --install-extension ms-python.vscode-pylance
-sudo -u ${RUID} /bin/bash -c code --install-extension ms-toolsai.jupyter
-sudo -u ${RUID} /bin/bash -c code --install-extension ms-toolsai.jupyter-keymap
-sudo -u ${RUID} /bin/bash -c code --install-extension ms-toolsai.jupyter-renderers
-sudo -u ${RUID} /bin/bash -c code --install-extension ms-toolsai.vscode-jupyter-cell-tags
-sudo -u ${RUID} /bin/bash -c code --install-extension ms-toolsai.vscode-jupyter-slideshow
-sudo -u ${RUID} /bin/bash -c code --install-extension PROxZIMA.sweetdracula
-sudo -u ${RUID} /bin/bash -c code --install-extension softwaredotcom.swdc-vscode
-sudo -u ${RUID} /bin/bash -c code --install-extension xabikos.JavaScriptSnippets
-
-# Install ASDF
-show_message "Instalando ASDF"
-sudo -u ${RUID} /bin/bash -c 'git clone https://github.com/asdf-vm/asdf.git ~/.asdf'
+user_do code --install-extension bceskavich.theme-dracula-at-night
+user_do code --install-extension dbaeumer.vscode-eslint
+user_do code --install-extension dracula-theme.theme-dracula
+user_do code --install-extension ecmel.vscode-html-css
+user_do code --install-extension emmanuelbeziat.vscode-great-icons
+user_do code --install-extension esbenp.prettier-vscode
+user_do code --install-extension formulahendry.code-runner
+user_do code --install-extension MS-CEINTL.vscode-language-pack-pt-BR
+user_do code --install-extension ms-dotnettools.csharp
+user_do code --install-extension ms-python.isort
+user_do code --install-extension ms-python.python
+user_do code --install-extension ms-python.vscode-pylance
+user_do code --install-extension ms-toolsai.jupyter
+user_do code --install-extension ms-toolsai.jupyter-keymap
+user_do code --install-extension ms-toolsai.jupyter-renderers
+user_do code --install-extension ms-toolsai.vscode-jupyter-cell-tags
+user_do code --install-extension ms-toolsai.vscode-jupyter-slideshow
+user_do code --install-extension PROxZIMA.sweetdracula
+user_do code --install-extension softwaredotcom.swdc-vscode
+user_do code --install-extension xabikos.JavaScriptSnippets
 
 # Copy VSCode settings (theme, font)
 show_message "Copiando configurações do VSCode"
 mkdir -p /home/${RUID}/.config/Code/User/
 mv -f vscode-settings.json /home/${RUID}/.config/Code/User/settings.json 
 
+# Install ASDF
+show_message "Instalando ASDF"
+user_do 'git clone https://github.com/asdf-vm/asdf.git ~/.asdf'
+
+# Oh-my-zsh
+show_message "Instalando oh-my-zsh"
+user_do 'curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh'
+
+# oh-my-posh
+show_message "Instalando oh-my-posh"
+wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+chmod +x /usr/local/bin/oh-my-posh
+user_do 'mkdir ~/.poshthemes'
+user_do 'wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O ~/.poshthemes/themes.zip'
+user_do 'unzip ~/.poshthemes/themes.zip -d ~/.poshthemes'
+user_do 'chmod u+rw ~/.poshthemes/*.omp.*'
+user_do 'rm ~/.poshthemes/themes.zip'
+
 # Set themes and wallpaper
 show_message "Aplicando Wallpaper"
-sudo -u ${RUID} /bin/bash -c 'DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.cinnamon.desktop.background picture-uri "file:///$PWD/wallpaper.jpg"'
+user_do 'DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.cinnamon.desktop.background picture-uri "file:///$PWD/wallpaper.jpg"'
 
 # Home folder - config files
 show_message "Copiando arquivos de configuração para a pasta home"
@@ -165,18 +170,20 @@ mv -f /tmp/home/.* /home/${RUID}/
 
 # Install vim-plug
 show_message "Instalando Vim-Plug"
-sudo -u ${RUID} /bin/bash -c 'curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-sudo -u ${RUID} /bin/bash -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-sudo -u ${RUID} /bin/bash -c 'vim -c :PlugInstall -c :q -c :q'
+user_do 'curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+user_do 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+user_do 'vim -c :PlugInstall -c :q -c :q'
 
 # Cinnamon menu
 show_message "Copiando arquivos tema do cinnamon-menu"
+mkdir -p /home/${RUID}/.cinnamon/configs/menu@cinnamon.org/
 mv cinnamon-menu.json /home/${RUID}/.cinnamon/configs/menu@cinnamon.org/0.json
 
 # Cinnamon panel launcher
 show_message "Copiando arquivos tema do panel-launcher-cinnamon"
+mkdir -p /home/${RUID}/.cinnamon/configs/panel-launchers@cinnamon.org/
 mv panel-launcher-cinnamon.json /home/${RUID}/.cinnamon/configs/panel-launchers@cinnamon.org/15.json
 
 # Load dconf file
 show_message "Carregando configurações do dconf"
-sudo -u ${RUID} /bin/bash -c 'dconf load / < dconf_cinnamon_settings'
+user_do 'dconf load / < dconf_cinnamon_settings'
