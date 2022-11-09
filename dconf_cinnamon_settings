@@ -100,6 +100,11 @@ binding=['<Primary><Alt>a']
 command='flameshot gui'
 name='Flameshot'
 
+[org/cinnamon/desktop/keybindings/custom-keybindings/custom4]
+binding=['<Primary><Shift>Escape']
+command='gnome-system-monitor'
+name='Gnome System Monitor'
+
 [org/cinnamon/desktop/keybindings/media-keys]
 calculator=['<Primary><Alt>c']
 logout=@as []

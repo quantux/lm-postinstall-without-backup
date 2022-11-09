@@ -14,7 +14,7 @@ apt update && apt upgrade -y
 dpkg --add-architecture i386
 
 # Install apt packages
-apt install -y build-essential zsh tmux git curl wget gpg apt-transport-https preload blender deepin-icon-theme vim gedit gimp flameshot fonts-firacode blender cheese sublime-text screenfetch python2 python3 python3-gpg python3-pip inkscape virtualbox virtualbox-qt virtualbox-guest-x11 vlc filezilla steam gparted pinta nmap traceroute vlc ttf-mscorefonts-installer p7zip-full okular unrar rar bleachbit ubuntu-restricted-extras libdvd-pkg tlp tp-smapi-dkms acpi-call-dkms gimp-help-pt fonts-powerline calibre gnome-boxes audacity kazam htop neofetch openshot-qt python3-setuptools scrcpy whois gnupg2 software-properties-common libncurses5-dev libgmp-dev libmysqlclient-dev remmina tree obs-studio pavucontrol gir1.2-gmenu-3.0 jstest-gtk speedtest-cli pv neovim wireshark clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev xclip
+apt install -y build-essential zsh tmux git curl wget gpg apt-transport-https preload blender vim gedit gimp flameshot fonts-firacode blender cheese sublime-text screenfetch python2 python3 python3-gpg python3-pip inkscape virtualbox virtualbox-qt virtualbox-guest-x11 vlc filezilla steam gparted pinta nmap traceroute vlc ttf-mscorefonts-installer p7zip-full okular unrar rar bleachbit ubuntu-restricted-extras libdvd-pkg tlp tp-smapi-dkms acpi-call-dkms gimp-help-pt fonts-powerline calibre gnome-boxes audacity kazam htop neofetch openshot-qt python3-setuptools scrcpy whois gnupg2 software-properties-common libncurses5-dev libgmp-dev libmysqlclient-dev remmina tree obs-studio pavucontrol gir1.2-gmenu-3.0 jstest-gtk speedtest-cli pv neovim wireshark clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev xclip
 
 # Reconfigure libdvd-pkg
 dpkg-reconfigure libdvd-pkg
@@ -55,7 +55,16 @@ mv Sweet-mars-v40 /usr/share/themes/
 git clone https://github.com/keeferrourke/la-capitaine-icon-theme /usr/share/icons/la-capitaine
 
 # ZSH and Oh-my-zsh
-sudo -u ${RUID} sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)";
+sudo -u ${RUID} /bin/bash -c 'curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh'
+
+# Oh-my-posh and oh-my-posh themes
+wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/posh-linux-amd64 -O /usr/local/bin/oh-my-posh
+chmod +x /usr/local/bin/oh-my-posh
+mkdir ~/.poshthemes
+sudo -u ${RUID} /bin/bash -c 'wget https://github.com/JanDeDobbeleer/oh-my-posh/releases/latest/download/themes.zip -O ~/.poshthemes/themes.zip'
+sudo -u ${RUID} /bin/bash -c 'unzip ~/.poshthemes/themes.zip -d ~/.poshthemes'
+chmod u+rw ~/.poshthemes/*.omp.*
+rm ~/.poshthemes/themes.zip
 
 # Disable; Recent 
 rm ~/.local/share/recently-used.xbel
@@ -67,7 +76,7 @@ git clone https://github.com/udoyen/wps-fonts.git /tmp/wps-fonts
 mv /tmp/wps-fonts/wps /usr/share/fonts/
 
 # Install ASDF
-sudo -u ${RUID} git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+sudo -u ${RUID} /bin/bash -c 'git clone https://github.com/asdf-vm/asdf.git ~/.asdf'
 
 # Install Teamviewer
 wget "https://download.teamviewer.com/download/linux/teamviewer_amd64.deb" -O teamviewer.deb
@@ -110,22 +119,22 @@ code --install-extension softwaredotcom.swdc-vscode
 code --install-extension xabikos.JavaScriptSnippets
 
 # Copy VSCode settings (theme, font)
-mv -f vscode-settings.json /home/mths/.config/Code/User/settings.json 
+mv -f vscode-settings.json /home/${RUID}/.config/Code/User/settings.json 
 
 # Set themes and wallpaper
-sudo -u ${RUID} DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.cinnamon.desktop.background picture-uri "file:///$PWD/wallpaper.jpg"
+sudo -u ${RUID} /bin/bash -c 'DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/${RUSER_UID}/bus" gsettings set org.cinnamon.desktop.background picture-uri "file:///$PWD/wallpaper.jpg"'
 
 # Home folder - config files
 git clone https://github.com/quantux/home /tmp/home
 rsync -av /tmp/home/ /home/${RUID}/
 
 # Install vim-plug
-sudo -u ${RUID} curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-sudo -u ${RUID} sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-sudo -u ${RUID} vim -c :PlugInstall -c :q -c :q
+sudo -u ${RUID} /bin/bash -c 'curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+sudo -u ${RUID} /bin/bash -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+sudo -u ${RUID} /bin/bash -c 'vim -c :PlugInstall -c :q -c :q'
 
 # Load dconf file
-sudo -u ${RUID} dconf load / < dconf_cinnamon_settings
+sudo -u ${RUID} /bin/bash -c 'dconf load / < dconf_cinnamon_settings'
 
 # Cinnamon menu
 mv cinnamon-menu.json /home/${RUID}/.cinnamon/configs/menu@cinnamon.org/0.json
