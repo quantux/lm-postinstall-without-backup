@@ -17,7 +17,7 @@ user_do() {
 }
 
 user_zsh_do() {
-    sudo -u ${RUID} /bin/zsh -c "$1"
+    sudo -u ${RUID} /bin/zsh -c "source ~/.zshrc; $1"
 }
 
 # Set mirrors
@@ -221,16 +221,25 @@ user_zsh_do "asdf install nodejs latest"
 user_zsh_do "asdf global ruby latest"
 user_zsh_do "asdf global nodejs latest"
 
+# Install rails
+show_message "Instalando Ruby on Rails"
+user_zsh_do "gem install rails"
+
+# Install npm global packages
+show_message "Instalando pacotes npm globais"
+user_zsh_do "npm i -g yarn"
+user_zsh_do "npm i -g http-server"
+user_zsh_do "npm i -g localtunnel"
+user_zsh_do "npm i -g ngrok"
+
 # Install PHP
 show_message "Instalando PHP"
-sudo apt install -y php php-common php-bcmath php-json php-mbstring php-tokenizer php-xml libapache2-mod-php php-xmlrpc php-soap php-gd php-mysql php-cli php-curl php-zip php-pear php-dev libcurl3-openssl-dev
+apt install -y php php-common php-bcmath php-json php-mbstring php-tokenizer php-xml libapache2-mod-php php-xmlrpc php-soap php-gd php-mysql php-cli php-curl php-zip php-pear php-dev libcurl3-openssl-dev
 
 # Install MySQL
 show_message "Instalando MySQL"
-sudo apt install -y mysql-server
-# TODO: remover senha:
-# `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';`
-# `FLUSH PRIVILEGES;`
+apt install -y mysql-server
+mysql -u root --execute="ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY ''; FLUSH PRIVILEGES;"
 
 # Instalar Composer
 show_message "Instalando Composer"
@@ -239,3 +248,10 @@ mv composer.phar /usr/local/bin/composer
 chmod +x /usr/local/bin/composer
 user_do composer global require laravel/installer
 
+# Instalar Android Studio
+show_message "Instalando Android Studio"
+apt install -y libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
+android_studio_url=$(curl -s 'https://developer.android.com/studio/index.html' | grep -Po '(?<=href=")[^"]*(?=")' - | grep -m1 .tar.gz)
+wget $android_studio_url -O android-studio.tar.gz
+tar -xvf android-studio.tar.gz
+mv android-studio /usr/share/android-studio
