@@ -103,7 +103,7 @@ mv Sweet-mars-v40 /usr/share/themes/
 # La-Capitaine Icons
 show_message "Instalando ícones La-Capitaine"
 tar -zxvf la-capitaine-icon-theme.tar.gz
-mv la-capitaine-icon-theme /usr/share/themes/la-capitaine
+mv la-capitaine-icon-theme /usr/share/icons/la-capitaine
 
 # WPS Office Fonts
 show_message "Instalando fontes para o WPS Office"
@@ -192,8 +192,8 @@ user_do "shopt -s dotglob; mv /tmp/home/* ~/"
 # Install vim-plug
 show_message "Instalando Vim-Plug"
 user_do "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-user_do "curl -fLo '${XDG_DATA_HOME:-$HOME/.local/share}'/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-user_do "vim -c :PlugInstall -c :q -c :q"
+user_do "curl -fLo \"${XDG_DATA_HOME:-$HOME/.local/share}\"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+user_do "vim --clean -c :PlugInstall -c :q -c :q"
 
 # Cinnamon menu
 show_message "Copiando arquivos tema do cinnamon-menu"
