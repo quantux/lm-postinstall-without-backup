@@ -103,7 +103,7 @@ mv Sweet-mars-v40 /usr/share/themes/
 # La-Capitaine Icons
 show_message "Instalando ícones La-Capitaine"
 tar -zxvf la-capitaine-icon-theme.tar.gz
-mv la-capitaine-icon-theme /usr/share/icons/la-capitaine
+mv la-capitaine-icon-theme /usr/share/themes/la-capitaine
 
 # WPS Office Fonts
 show_message "Instalando fontes para o WPS Office"
