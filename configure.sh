@@ -46,7 +46,7 @@ dpkg --add-architecture i386
 
 # Install apt packages
 show_message "Instalando pacotes"
-apt install -y build-essential zsh tmux git curl wget gpg apt-transport-https preload blender vim gedit gimp flameshot fonts-firacode blender cheese sublime-text screenfetch python2 python3 python3-gpg python3-pip python-setuptools inkscape virtualbox virtualbox-qt virtualbox-guest-x11 vlc filezilla steam gparted pinta nmap traceroute vlc ttf-mscorefonts-installer p7zip-full okular unrar rar bleachbit ubuntu-restricted-extras libdvd-pkg tlp tp-smapi-dkms acpi-call-dkms gimp-help-pt fonts-powerline calibre gnome-boxes audacity kazam htop neofetch openshot-qt python3-setuptools scrcpy whois gnupg2 software-properties-common libncurses5-dev libgmp-dev libmysqlclient-dev remmina tree obs-studio pavucontrol gir1.2-gmenu-3.0 jstest-gtk speedtest-cli pv neovim clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev xclip
+apt install -y build-essential zsh tmux git curl wget gpg ca-certificates gnupg lsb-release apt-transport-https preload blender vim gedit gimp flameshot fonts-firacode blender cheese sublime-text screenfetch python2 python3 python3-gpg python3-pip python-setuptools inkscape virtualbox virtualbox-qt virtualbox-guest-x11 vlc filezilla steam gparted pinta nmap traceroute vlc ttf-mscorefonts-installer p7zip-full okular unrar rar bleachbit ubuntu-restricted-extras libdvd-pkg tlp tp-smapi-dkms acpi-call-dkms gimp-help-pt fonts-powerline calibre gnome-boxes audacity kazam htop neofetch openshot-qt python3-setuptools scrcpy whois gnupg2 software-properties-common libncurses5-dev libgmp-dev libmysqlclient-dev remmina tree obs-studio pavucontrol gir1.2-gmenu-3.0 jstest-gtk speedtest-cli pv neovim clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev xclip
 echo "wireshark-common wireshark-common/install-setuid boolean true" | debconf-set-selections
 DEBIAN_FRONTEND=noninteractive apt install -y wireshark
 
@@ -258,8 +258,6 @@ mv android-studio /usr/share/android-studio
 
 # Instalar docker
 show_message "Instalando Docker"
-apt remove -y docker docker-engine docker.io containerd runc
-apt install -y ca-certificates curl gnupg lsb-release
 mkdir -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 chmod a+r /etc/apt/keyrings/docker.gpg
@@ -268,7 +266,7 @@ apt update
 apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 docker run hello-world
 groupadd docker
-usermod -aG docker $RUSER_UID
+usermod -aG docker $RUID
 
 # Reiniciar
 while true; do
