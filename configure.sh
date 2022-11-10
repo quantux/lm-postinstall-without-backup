@@ -16,6 +16,10 @@ user_do() {
     sudo -u ${RUID} /bin/bash -c "$1"
 }
 
+user_zsh_do() {
+    sudo -u ${RUID} /bin/zsh -c "$1"
+}
+
 # Set mirrors
 show_message "Atualizando mirrors"
 rm /etc/apt/sources.list.d/official-package-repositories.list
@@ -160,13 +164,10 @@ show_message "Copiando configurações do VSCode"
 user_do "mkdir -p ~/.config/Code/User/"
 user_do "cp vscode-settings.json ~/.config/Code/User/settings.json"
 
-# Install ASDF
-show_message "Instalando ASDF"
-user_do "git clone https://github.com/asdf-vm/asdf.git ~/.asdf"
-
 # Oh-my-zsh
 show_message "Instalando oh-my-zsh"
-user_do "curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+user_do 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+user_do "chsh -s $(which zsh)"
 
 # oh-my-posh
 show_message "Instalando oh-my-posh"
@@ -184,9 +185,8 @@ user_do "DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/${RUSER_UID}/bus' gsettin
 
 # Home folder - config files
 show_message "Copiando arquivos de configuração para a pasta home"
-shopt -s dotglob
 git clone https://github.com/quantux/home /tmp/home
-user_do "mv /tmp/home/* ~/"
+user_do "shopt -s dotglob; mv /tmp/home/* ~/"
 
 # Install vim-plug
 show_message "Instalando Vim-Plug"
@@ -194,7 +194,7 @@ user_do "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubuser
 user_do "curl -fLo '${XDG_DATA_HOME:-$HOME/.local/share}'/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 user_do "vim -c :PlugInstall -c :q -c :q"
 
-Cinnamon menu
+# Cinnamon menu
 show_message "Copiando arquivos tema do cinnamon-menu"
 user_do "mkdir -p ~/.cinnamon/configs/menu@cinnamon.org/"
 user_do "cp cinnamon-menu.json ~/.cinnamon/configs/menu@cinnamon.org/0.json"
@@ -207,3 +207,35 @@ user_do "cp panel-launcher-cinnamon.json ~/.cinnamon/configs/panel-launchers@cin
 # Load dconf file
 show_message "Carregando configurações do dconf"
 user_do "DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/${RUSER_UID}/bus' dconf load / < dconf_cinnamon_settings"
+
+
+# ---- Programming things
+
+# Install ASDF
+show_message "Instalando ASDF"
+user_do "git clone https://github.com/asdf-vm/asdf.git ~/.asdf"
+user_zsh_do "asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git"
+user_zsh_do "asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git"
+user_zsh_do "asdf install ruby latest"
+user_zsh_do "asdf install nodejs latest"
+user_zsh_do "asdf global ruby latest"
+user_zsh_do "asdf global nodejs latest"
+
+# Install PHP
+show_message "Instalando PHP"
+sudo apt install -y php php-common php-bcmath php-json php-mbstring php-tokenizer php-xml libapache2-mod-php php-xmlrpc php-soap php-gd php-mysql php-cli php-curl php-zip php-pear php-dev libcurl3-openssl-dev
+
+# Install MySQL
+show_message "Instalando MySQL"
+sudo apt install -y mysql-server
+# TODO: remover senha:
+# `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';`
+# `FLUSH PRIVILEGES;`
+
+# Instalar Composer
+show_message "Instalando Composer"
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+chmod +x /usr/local/bin/composer
+user_do composer global require laravel/installer
+
