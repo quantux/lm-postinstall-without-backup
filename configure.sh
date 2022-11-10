@@ -192,7 +192,7 @@ user_do "shopt -s dotglob; mv /tmp/home/* ~/"
 # Install vim-plug
 show_message "Instalando Vim-Plug"
 user_do "curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-user_do "curl -fLo \"${XDG_DATA_HOME:-$HOME/.local/share}\"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+user_do "curl -fLo ${XDG_DATA_HOME:-~/.local/share}/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 user_do "vim --clean -c :PlugInstall -c :q -c :q"
 
 # Cinnamon menu
