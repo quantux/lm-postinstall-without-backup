@@ -12,7 +12,7 @@ show_message() {
     printf "${LightColor}$1${NC}\n\n"
 }
 
-user_do(" "
+user_do() {
     sudo -u ${RUID} /bin/bash -c "$1"
 }
 
