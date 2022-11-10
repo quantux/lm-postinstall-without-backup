@@ -256,3 +256,27 @@ android_studio_url=$(curl -s 'https://developer.android.com/studio/index.html' |
 wget $android_studio_url -O android-studio.tar.gz
 tar -xvf android-studio.tar.gz
 mv android-studio /usr/share/android-studio
+
+# Instalar docker
+show_message "Instalando Docker"
+apt remove -y docker docker-engine docker.io containerd runc
+apt install -y ca-certificates curl gnupg lsb-release
+mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+chmod a+r /etc/apt/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $ubuntu_codename stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt update
+apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+docker run hello-world
+groupadd docker
+usermod -aG docker $RUSER_UID
+
+# Reiniciar
+CONTADOR=5
+while (( CONTADOR >= 0 )); do
+    show_message "Finalizado! Reiniciando o computador em... $CONTADOR"
+    sleep 1;
+    let CONTADOR=CONTADOR-1;
+done
+
+reboot
