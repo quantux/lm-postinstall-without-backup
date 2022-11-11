@@ -61,7 +61,8 @@ apt install -y build-essential zsh tmux git curl wget gpg ca-certificates gnupg 
 
 # Install ttf-mscorefonts-installer
 show_message "Instalando ttf-mscorefonts-installer"
-echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | debconf-set-selections
+echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula	boolean	true" | debconf-set-selections
+echo "ttf-mscorefonts-installer msttcorefonts/present-mscorefonts-eula note" | debconf-set-selections
 apt install -y ttf-mscorefonts-installer
 
 # Instalando virtualbox-guest-x11
