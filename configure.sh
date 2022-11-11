@@ -56,6 +56,7 @@ dpkg --add-architecture i386
 show_message "Instalando pacotes"
 apt install -y build-essential zsh tmux git curl wget gpg ca-certificates gnupg lsb-release debconf-utils apt-transport-https preload blender firefox-locale-pt thunderbird-locale-pt vim gedit gimp flameshot fonts-firacode blender cheese sublime-text screenfetch python2 python3 python3-gpg python3-pip python-setuptools inkscape virtualbox virtualbox-qt vlc filezilla steam gparted pinta nmap traceroute vlc p7zip-full okular unrar rar bleachbit ubuntu-restricted-extras tlp tp-smapi-dkms acpi-call-dkms gimp-help-pt fonts-powerline calibre gnome-boxes audacity kazam htop neofetch openshot-qt python3-setuptools scrcpy whois gnupg2 software-properties-common libncurses5-dev libgmp-dev libmysqlclient-dev remmina tree obs-studio pavucontrol gir1.2-gmenu-3.0 jstest-gtk speedtest-cli pv neovim dropbox clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev xclip
 
+# Install ttf-mscorefonts-installer
 show_message "Instalando ttf-mscorefonts-installer"
 echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | debconf-set-selections
 apt install -y ttf-mscorefonts-installer
