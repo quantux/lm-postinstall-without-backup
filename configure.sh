@@ -46,12 +46,11 @@ dpkg --add-architecture i386
 
 # Install apt packages
 show_message "Instalando pacotes"
-apt install -y build-essential zsh tmux git curl wget gpg ca-certificates gnupg lsb-release apt-transport-https preload blender vim gedit gimp flameshot fonts-firacode blender cheese sublime-text screenfetch python2 python3 python3-gpg python3-pip python-setuptools inkscape virtualbox virtualbox-qt virtualbox-guest-x11 vlc filezilla steam gparted pinta nmap traceroute vlc ttf-mscorefonts-installer p7zip-full okular unrar rar bleachbit ubuntu-restricted-extras libdvd-pkg tlp tp-smapi-dkms acpi-call-dkms gimp-help-pt fonts-powerline calibre gnome-boxes audacity kazam htop neofetch openshot-qt python3-setuptools scrcpy whois gnupg2 software-properties-common libncurses5-dev libgmp-dev libmysqlclient-dev remmina tree obs-studio pavucontrol gir1.2-gmenu-3.0 jstest-gtk speedtest-cli pv neovim clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev xclip
+apt install -y build-essential zsh tmux git curl wget gpg ca-certificates gnupg lsb-release apt-transport-https preload blender firefox-locale-pt thunderbird-locale-pt vim gedit gimp flameshot fonts-firacode blender cheese sublime-text screenfetch python2 python3 python3-gpg python3-pip python-setuptools inkscape virtualbox virtualbox-qt virtualbox-guest-x11 vlc filezilla steam gparted pinta nmap traceroute vlc ttf-mscorefonts-installer p7zip-full okular unrar rar bleachbit ubuntu-restricted-extras libdvd-pkg tlp tp-smapi-dkms acpi-call-dkms gimp-help-pt fonts-powerline calibre gnome-boxes audacity kazam htop neofetch openshot-qt python3-setuptools scrcpy whois gnupg2 software-properties-common libncurses5-dev libgmp-dev libmysqlclient-dev remmina tree obs-studio pavucontrol gir1.2-gmenu-3.0 jstest-gtk speedtest-cli pv neovim clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev xclip
 echo "wireshark-common wireshark-common/install-setuid boolean true" | debconf-set-selections
 DEBIAN_FRONTEND=noninteractive apt install -y wireshark
 
 # Testar depois:
-# wireshark
 # virtualbox-guest-x11
 # libdvd-pkg
 
@@ -83,7 +82,6 @@ mv Roboto Noto_Sans /usr/share/fonts/
 
 # Install - Adapta Nokto theme
 show_message "Instalando tema Adapta Nokto"
-wget "https://launchpadlibrarian.net/391325176/adapta-gtk-theme_3.95.0.11-0ubuntu1~bionic1_all.deb" -O adapta-nokto-gtk-theme.deb
 dpkg -i adapta-nokto-gtk-theme.deb
 apt install -fy
 
@@ -196,13 +194,15 @@ user_do "vim --clean -c :PlugInstall -c :q -c :q"
 
 # Cinnamon menu
 show_message "Copiando arquivos tema do cinnamon-menu"
-user_do "mkdir -p ~/.cinnamon/configs/menu@cinnamon.org/"
-user_do "cp cinnamon-menu.json ~/.cinnamon/configs/menu@cinnamon.org/0.json"
+user_do "cp -Tr menu@cinnamon.org ~/.cinnamon/configs/menu@cinnamon.org"
 
 # Cinnamon panel launcher
 show_message "Copiando arquivos tema do panel-launcher-cinnamon"
-user_do "mkdir -p ~/.cinnamon/configs/panel-launchers@cinnamon.org/"
-user_do "cp panel-launcher-cinnamon.json ~/.cinnamon/configs/panel-launchers@cinnamon.org/15.json"
+user_do "cp -Tr panel-launchers@cinnamon.org ~/.cinnamon/configs/panel-launchers@cinnamon.org"
+
+# Cinnamon calendar
+show_message "Copiando arquivos tema do cinnamon calendar"
+user_do "cp -Tr calendar@cinnamon.org ~/.cinnamon/configs/calendar@cinnamon.org"
 
 # Load dconf file
 show_message "Carregando configurações do dconf"
