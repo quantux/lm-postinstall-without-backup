@@ -46,16 +46,27 @@ dpkg --add-architecture i386
 
 # Install apt packages
 show_message "Instalando pacotes"
-apt install -y build-essential zsh tmux git curl wget gpg ca-certificates gnupg lsb-release apt-transport-https preload blender firefox-locale-pt thunderbird-locale-pt vim gedit gimp flameshot fonts-firacode blender cheese sublime-text screenfetch python2 python3 python3-gpg python3-pip python-setuptools inkscape virtualbox virtualbox-qt virtualbox-guest-x11 vlc filezilla steam gparted pinta nmap traceroute vlc ttf-mscorefonts-installer p7zip-full okular unrar rar bleachbit ubuntu-restricted-extras libdvd-pkg tlp tp-smapi-dkms acpi-call-dkms gimp-help-pt fonts-powerline calibre gnome-boxes audacity kazam htop neofetch openshot-qt python3-setuptools scrcpy whois gnupg2 software-properties-common libncurses5-dev libgmp-dev libmysqlclient-dev remmina tree obs-studio pavucontrol gir1.2-gmenu-3.0 jstest-gtk speedtest-cli pv neovim clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev xclip
+apt install -y build-essential zsh tmux git curl wget gpg ca-certificates gnupg lsb-release debconf-utils apt-transport-https preload blender firefox-locale-pt thunderbird-locale-pt vim gedit gimp flameshot fonts-firacode blender cheese sublime-text screenfetch python2 python3 python3-gpg python3-pip python-setuptools inkscape virtualbox virtualbox-qt vlc filezilla steam gparted pinta nmap traceroute vlc ttf-mscorefonts-installer p7zip-full okular unrar rar bleachbit ubuntu-restricted-extras tlp tp-smapi-dkms acpi-call-dkms gimp-help-pt fonts-powerline calibre gnome-boxes audacity kazam htop neofetch openshot-qt python3-setuptools scrcpy whois gnupg2 software-properties-common libncurses5-dev libgmp-dev libmysqlclient-dev remmina tree obs-studio pavucontrol gir1.2-gmenu-3.0 jstest-gtk speedtest-cli pv neovim clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev xclip
+
+# Instalando virtualbox-guest-x11
+show_message "Instalando virtualbox-guest-x11"
+DEBIAN_FRONTEND=noninteractive apt install -y virtualbox-guest-x11
+
+# Instalando wireshark
+show_message "Instalando wireshark"
 echo "wireshark-common wireshark-common/install-setuid boolean true" | debconf-set-selections
 DEBIAN_FRONTEND=noninteractive apt install -y wireshark
 
-# Testar depois:
-# virtualbox-guest-x11
-# libdvd-pkg
-
-# Reconfigure libdvd-pkg
-show_message "Reconfigurando libdvd-pkg"
+# Instalando libdvd-pkg
+show_message "Instalando libdvd-pkg"
+cat <<EndOfConfig | debconf-set-selections
+libdvd-pkg	libdvd-pkg/build	boolean	true
+libdvd-pkg	libdvd-pkg/post-invoke_hook-remove	boolean	false
+libdvd-pkg	libdvd-pkg/first-install	note
+libdvd-pkg	libdvd-pkg/post-invoke_hook-install	boolean	true
+libdvd-pkg	libdvd-pkg/upgrade	note
+EndOfConfig
+apt install -y libdvd-pkg
 dpkg-reconfigure libdvd-pkg
 
 # Install pylint
