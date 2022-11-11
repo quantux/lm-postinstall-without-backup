@@ -110,11 +110,11 @@ cp ./assets/programs-settings/virtualbox.desktop /usr/share/applications/virtual
 
 # Install Sweet Theme
 show_message "Instalando Sweet Theme"
-tar -xf Sweet-mars-v40.tar.xz -C /usr/share/themes
+tar -xf ./assets/themes/Sweet-mars-v40.tar.xz -C /usr/share/themes
 
 # La-Capitaine Icons
 show_message "Instalando ícones La-Capitaine"
-tar -zxvf ./assets/icons/la-capitaine-icon-theme.tar.gz -C /usr/share/icons/
+tar -zxvf ./assets/icons/la-capitaine.tar.gz -C /usr/share/icons/
 
 # WPS Office Fonts
 show_message "Instalando fontes para o WPS Office"
@@ -186,7 +186,7 @@ user_do "rm ~/.poshthemes/themes.zip"
 
 # Set themes and wallpaper
 show_message "Aplicando Wallpaper"
-user_do "DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/${RUSER_UID}/bus' gsettings set org.cinnamon.desktop.background picture-uri 'file:///$PWD/wallpaper.jpg'"
+user_do "DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/${RUSER_UID}/bus' gsettings set org.cinnamon.desktop.background picture-uri 'file:///$PWD/assets/wallpapers/default-wallpaper.jpg'"
 
 # Home folder - config files
 show_message "Copiando arquivos de configuração para a pasta home"
@@ -214,7 +214,7 @@ user_do "cp -Tr ./assets/cinnamon-settings/calendar@cinnamon.org ~/.cinnamon/con
 
 # Load dconf file
 show_message "Carregando configurações do dconf"
-user_do "DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/${RUSER_UID}/bus' dconf load / < dconf_cinnamon_settings"
+user_do "DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/${RUSER_UID}/bus' dconf load / < ./assets/cinnamon-settings/dconf"
 
 # ---- Programming things
 # Install ASDF
