@@ -94,15 +94,15 @@ unzip /tmp/noto_sans.zip -d /usr/share/fonts/
 
 # Install - Adapta Nokto theme
 show_message "Instalando tema Adapta Nokto"
-dpkg -i adapta-nokto-gtk-theme.deb
+dpkg -i ./assets/themes/adapta-nokto-gtk-theme.deb
 apt install -fy
 
 show_message "Copiando arquivo de tema para o painel"
-cp cinnamon.css /usr/share/themes/Adapta-Nokto/cinnamon/cinnamon.css # Set Adapta Nokto panel color to black
+cp ./assets/themes/adapta-nokto-black-panel.css /usr/share/themes/Adapta-Nokto/cinnamon/cinnamon.css # Set Adapta Nokto panel color to black
 
 # Set virtualbox to use dark theme
 show_message "Copiando arquivo de tema para o Virtualbox"
-cp virtualbox.desktop /usr/share/applications/virtualbox.desktop
+cp ./assets/programs-settings/virtualbox.desktop /usr/share/applications/virtualbox.desktop
 
 # Install Sweet Theme
 show_message "Instalando Sweet Theme"
@@ -110,7 +110,7 @@ tar -xf Sweet-mars-v40.tar.xz -C /usr/share/themes
 
 # La-Capitaine Icons
 show_message "Instalando ícones La-Capitaine"
-tar -zxvf la-capitaine-icon-theme.tar.gz -C /usr/share/icons/
+tar -zxvf ./assets/icons/la-capitaine-icon-theme.tar.gz -C /usr/share/icons/
 
 # WPS Office Fonts
 show_message "Instalando fontes para o WPS Office"
@@ -157,7 +157,7 @@ user_do "code --install-extension xabikos.JavaScriptSnippets"
 # Copy VSCode settings (theme, font)
 show_message "Copiando configurações do VSCode"
 user_do "mkdir -p ~/.config/Code/User/"
-user_do "cp vscode-settings.json ~/.config/Code/User/settings.json"
+user_do "cp ./assets/programs-settings/vscode-settings.json ~/.config/Code/User/settings.json"
 
 # Disable; Recent 
 show_message "Desabilitando arquivos recentes (recent files)"
@@ -167,7 +167,7 @@ chattr +i /home/$RUID/.local/share/recently-used.xbel
 
 # Install oh-my-zsh
 show_message "Instalando oh-my-zsh"
-user_do "sh oh-my-zsh-install.sh --unattended"
+user_do "sh ./assets/oh-my-zsh/oh-my-zsh-install.sh --unattended"
 chsh -s $(which zsh) $(whoami)
 
 # Install oh-my-posh
@@ -198,23 +198,21 @@ user_do "vim -c :PlugInstall -c :q -c :q"
 
 # Cinnamon menu
 show_message "Copiando arquivos tema do cinnamon-menu"
-user_do "cp -Tr menu@cinnamon.org ~/.cinnamon/configs/menu@cinnamon.org"
+user_do "cp -Tr ./assets/cinnamon-settings/menu@cinnamon.org ~/.cinnamon/configs/menu@cinnamon.org"
 
 # Cinnamon panel launcher
 show_message "Copiando arquivos tema do panel-launcher-cinnamon"
-user_do "cp -Tr panel-launchers@cinnamon.org ~/.cinnamon/configs/panel-launchers@cinnamon.org"
+user_do "cp -Tr ./assets/cinnamon-settings/panel-launchers@cinnamon.org ~/.cinnamon/configs/panel-launchers@cinnamon.org"
 
 # Cinnamon calendar
 show_message "Copiando arquivos tema do cinnamon calendar"
-user_do "cp -Tr calendar@cinnamon.org ~/.cinnamon/configs/calendar@cinnamon.org"
+user_do "cp -Tr ./assets/cinnamon-settings/calendar@cinnamon.org ~/.cinnamon/configs/calendar@cinnamon.org"
 
 # Load dconf file
 show_message "Carregando configurações do dconf"
 user_do "DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/${RUSER_UID}/bus' dconf load / < dconf_cinnamon_settings"
 
-
 # ---- Programming things
-
 # Install ASDF
 show_message "Instalando ASDF"
 user_do "git clone https://github.com/asdf-vm/asdf.git ~/.asdf"
