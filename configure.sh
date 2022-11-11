@@ -36,6 +36,11 @@ echo -e $mirrors > /etc/apt/sources.list.d/official-package-repositories.list
 show_message "Atualizando repositórios"
 apt update
 
+# Instalando libdvd-pkg (único que pede confirmação)
+show_message "Instalando libdvd-pkg"
+apt -y install libdvd-pkg
+dpkg-reconfigure libdvd-pkg
+
 # Upgrade
 show_message "Atualizando pacotes"
 apt upgrade -y
@@ -43,11 +48,6 @@ apt upgrade -y
 # 32bits packages
 show_message "Habilitando pacotes de 32 bits"
 dpkg --add-architecture i386
-
-# Instalando libdvd-pkg
-show_message "Instalando libdvd-pkg"
-apt -y install libdvd-pkg
-dpkg-reconfigure libdvd-pkg
 
 # Install apt packages
 show_message "Instalando pacotes"
