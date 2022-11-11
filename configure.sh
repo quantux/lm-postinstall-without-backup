@@ -81,17 +81,16 @@ flatpak install -y --noninteractive flathub com.github.tchx84.Flatseal
 
 # Install Chrome
 show_message "Instalando Google Chrome"
-wget "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" -O google-chrome.deb
-dpkg -i google-chrome.deb
+wget "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" -O /tmp/google-chrome.deb
+dpkg -i /tmp/google-chrome.deb
 apt install -fy
 
 # Install - Adapta Nokto Fonts
 show_message "Instalando fontes Roboto e Noto Sans"
-wget "https://fonts.google.com/download?family=Roboto" -O roboto.zip
-wget "https://fonts.google.com/download?family=Noto Sans" -O noto_sans.zip
-unzip roboto.zip -d Roboto
-unzip noto_sans.zip -d Noto_Sans
-mv Roboto Noto_Sans /usr/share/fonts/
+wget "https://fonts.google.com/download?family=Roboto" -O /tmp/roboto.zip
+wget "https://fonts.google.com/download?family=Noto Sans" -O /tmp/noto_sans.zip
+unzip /tmp/roboto.zip -d /usr/share/fonts/
+unzip /tmp/noto_sans.zip -d /usr/share/fonts/
 
 # Install - Adapta Nokto theme
 show_message "Instalando tema Adapta Nokto"
@@ -107,13 +106,11 @@ cp virtualbox.desktop /usr/share/applications/virtualbox.desktop
 
 # Install Sweet Theme
 show_message "Instalando Sweet Theme"
-tar -xf Sweet-mars-v40.tar.xz
-mv Sweet-mars-v40 /usr/share/themes/
+tar -xf Sweet-mars-v40.tar.xz -C /usr/share/themes
 
 # La-Capitaine Icons
 show_message "Instalando ícones La-Capitaine"
-tar -zxvf la-capitaine-icon-theme.tar.gz
-mv la-capitaine-icon-theme /usr/share/icons/la-capitaine
+tar -zxvf la-capitaine-icon-theme.tar.gz -C /usr/share/icons/
 
 # WPS Office Fonts
 show_message "Instalando fontes para o WPS Office"
@@ -122,17 +119,16 @@ mv /tmp/wps-fonts/wps /usr/share/fonts/
 
 # Install Teamviewer
 show_message "Instalando TeamViewer"
-wget "https://download.teamviewer.com/download/linux/teamviewer_amd64.deb" -O teamviewer.deb
-dpkg -i teamviewer.deb
+wget "https://download.teamviewer.com/download/linux/teamviewer_amd64.deb" -O /tmp/teamviewer.deb
+dpkg -i /tmp/teamviewer.deb
 apt install -fy
 
 # Install VSCode
 show_message "Instalando VSCode"
-wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /tmp/packages.microsoft.gpg
+install -D -o root -g root -m 644 /tmp/packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
 sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
 apt update
-rm -f packages.microsoft.gpg
 apt install code -y
 
 # Install VSCode extensions
@@ -260,9 +256,8 @@ user_do "composer global require laravel/installer"
 show_message "Instalando Android Studio"
 apt install -y libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
 android_studio_url=$(curl -s 'https://developer.android.com/studio/index.html' | grep -Po '(?<=href=")[^"]*(?=")' - | grep -m1 .tar.gz)
-wget $android_studio_url -O android-studio.tar.gz
-tar -xvf android-studio.tar.gz
-mv android-studio /usr/share/android-studio
+wget $android_studio_url -O /tmp/android-studio.tar.gz
+tar -xvf /tmp/android-studio.tar.gz -C /usr/share/
 
 # Instalar docker
 show_message "Instalando Docker"
