@@ -65,6 +65,7 @@ pip3 install pylint
 # Install flatpak packages
 show_message "Instalando pacotes flatpak"
 flatpak install -y --noninteractive flathub com.github.calo001.fondo
+flatpak install -y --noninteractive flathub com.github.tchx84.Flatseal
 
 # Install Chrome
 show_message "Instalando Google Chrome"
