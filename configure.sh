@@ -150,16 +150,16 @@ user_do "code --install-extension PROxZIMA.sweetdracula"
 user_do "code --install-extension softwaredotcom.swdc-vscode"
 user_do "code --install-extension xabikos.JavaScriptSnippets"
 
+# Copy VSCode settings (theme, font)
+show_message "Copiando configurações do VSCode"
+user_do "mkdir -p ~/.config/Code/User/"
+user_do "cp vscode-settings.json ~/.config/Code/User/settings.json"
+
 # Disable; Recent 
 show_message "Desabilitando arquivos recentes (recent files)"
 user_do "rm ~/.local/share/recently-used.xbel"
 user_do "touch ~/.local/share/recently-used.xbel"
 user_do "chattr +i ~/.local/share/recently-used.xbel"
-
-# Copy VSCode settings (theme, font)
-show_message "Copiando configurações do VSCode"
-user_do "mkdir -p ~/.config/Code/User/"
-user_do "cp vscode-settings.json ~/.config/Code/User/settings.json"
 
 # Oh-my-zsh
 show_message "Instalando oh-my-zsh"
