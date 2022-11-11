@@ -246,7 +246,7 @@ show_message "Instalando Composer"
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 chmod +x /usr/local/bin/composer
-user_do composer global require laravel/installer
+user_do "composer global require laravel/installer"
 
 # Instalar Android Studio
 show_message "Instalando Android Studio"
