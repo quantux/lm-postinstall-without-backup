@@ -276,6 +276,10 @@ docker run hello-world
 groupadd docker
 usermod -aG docker $RUID
 
+# Define zsh como shell padrão
+show_message "Definir zsh como shell padrão"
+user_do "chsh -s $(which zsh)"
+
 # Reiniciar
 show_message ""
 while true; do
