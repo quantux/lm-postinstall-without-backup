@@ -28,6 +28,9 @@ user_zsh_do() {
     sudo -u ${RUID} /bin/zsh -c "source ~/.zshrc; $1"
 }
 
+# Fix clock time for windows dualboot
+timedatectl set-local-rtc 1
+
 # Set mirrors
 show_message "Atualizando mirrors"
 rm /etc/apt/sources.list.d/official-package-repositories.list
