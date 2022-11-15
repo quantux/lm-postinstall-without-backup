@@ -219,6 +219,9 @@ user_do "cp -Tr ./assets/cinnamon-settings/calendar@cinnamon.org ~/.cinnamon/con
 show_message "Carregando configurações do dconf"
 user_do "DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/${RUSER_UID}/bus' dconf load / < ./assets/cinnamon-settings/dconf"
 
+# Allow games run in fullscreen mode
+echo "SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0" >> /etc/environment
+
 # ---- Programming things
 # Install ASDF
 show_message "Instalando ASDF"
