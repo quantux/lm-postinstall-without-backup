@@ -255,6 +255,12 @@ docker run hello-world
 groupadd docker
 usermod -aG docker $RUID
 
+# Instalar Insomnia
+show_message "Instalando Insomnia"
+echo "deb [trusted=yes arch=amd64] https://download.konghq.com/insomnia-ubuntu/ default all" | sudo tee -a /etc/apt/sources.list.d/insomnia.list
+apt update
+apt install -y insomnia
+
 # Define zsh como shell padrão
 show_message "Definir zsh como shell padrão"
 user_do "chsh -s $(which zsh)"
