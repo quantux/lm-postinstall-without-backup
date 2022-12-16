@@ -265,6 +265,9 @@ apt install -y insomnia
 show_message "Definir zsh como shell padrão"
 user_do "chsh -s $(which zsh)"
 
+# store git credentials
+user_do "git config --global credential.helper store"
+
 # Reiniciar
 show_message ""
 while true; do
