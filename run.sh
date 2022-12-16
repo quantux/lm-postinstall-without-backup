@@ -138,38 +138,10 @@ sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/packages.microsoft.gpg]
 apt update
 apt install code -y
 
-# Install VSCode extensions
-show_message "Instalando extensões do VSCode"
-user_do "code --install-extension bceskavich.theme-dracula-at-night"
-user_do "code --install-extension dbaeumer.vscode-eslint"
-user_do "code --install-extension dracula-theme.theme-dracula"
-user_do "code --install-extension ecmel.vscode-html-css"
-user_do "code --install-extension emmanuelbeziat.vscode-great-icons"
-user_do "code --install-extension esbenp.prettier-vscode"
-user_do "code --install-extension formulahendry.code-runner"
-user_do "code --install-extension MS-CEINTL.vscode-language-pack-pt-BR"
-user_do "code --install-extension ms-dotnettools.csharp"
-user_do "code --install-extension ms-python.isort"
-user_do "code --install-extension ms-python.python"
-user_do "code --install-extension ms-python.vscode-pylance"
-user_do "code --install-extension ms-toolsai.jupyter"
-user_do "code --install-extension ms-toolsai.jupyter-keymap"
-user_do "code --install-extension ms-toolsai.jupyter-renderers"
-user_do "code --install-extension ms-toolsai.vscode-jupyter-cell-tags"
-user_do "code --install-extension ms-toolsai.vscode-jupyter-slideshow"
-user_do "code --install-extension PROxZIMA.sweetdracula"
-user_do "code --install-extension softwaredotcom.swdc-vscode"
-user_do "code --install-extension xabikos.JavaScriptSnippets"
-
-# Copy VSCode settings (theme, font)
-show_message "Copiando configurações do VSCode"
-user_do "mkdir -p ~/.config/Code/User/"
-user_do "cp ./assets/programs-settings/vscode-settings.json ~/.config/Code/User/settings.json"
-
 # Disable; Recent 
 show_message "Desabilitando arquivos recentes (recent files)"
-rm /home/$RUID/.local/share/recently-used.xbel
-touch /home/$RUID/.local/share/recently-used.xbel
+user_do "rm ~/.local/share/recently-used.xbel"
+user_do "touch ~/.local/share/recently-used.xbel"
 chattr +i /home/$RUID/.local/share/recently-used.xbel
 
 # Install oh-my-zsh
@@ -214,6 +186,10 @@ user_do "cp -Tr ./assets/cinnamon-settings/panel-launchers@cinnamon.org ~/.cinna
 # Cinnamon calendar
 show_message "Copiando arquivos tema do cinnamon calendar"
 user_do "cp -Tr ./assets/cinnamon-settings/calendar@cinnamon.org ~/.cinnamon/configs/calendar@cinnamon.org"
+
+# Cinnamon sound
+show_message "Copiando arquivos de configuração do sound"
+user_do "cp -Tr ./assets/cinnamon-settings/sound@cinnamon.org ~/.cinnamon/configs/sound@cinnamon.org"
 
 # Load dconf file
 show_message "Carregando configurações do dconf"
