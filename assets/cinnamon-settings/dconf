@@ -77,16 +77,16 @@ gtk-theme='Sweet-mars-v40'
 icon-theme='la-capitaine'
 
 [org/cinnamon/desktop/keybindings]
-custom-list=['custom3', 'custom1', 'custom0', '__dummy__', 'custom2']
+custom-list=['custom5', 'custom3', 'custom1', 'custom0', '__dummy__', 'custom2', 'custom4']
 looking-glass-keybinding=@as []
 
 [org/cinnamon/desktop/keybindings/custom-keybindings/custom0]
-binding=['<Primary><Alt>n']
+binding=['<Super>n']
 command='/opt/google/chrome/google-chrome --profile-directory=Default --app-id=jdfcgiombcjglahnigjmkpdfchmeodoc'
 name='Notion'
 
 [org/cinnamon/desktop/keybindings/custom-keybindings/custom1]
-binding=['<Primary><Alt>m']
+binding=['<Super>m']
 command='/opt/google/chrome/google-chrome --profile-directory=Default --app-id=emkhkogmeeanhammkhmeochbjneodnpj'
 name='Mindmeister'
 
@@ -101,9 +101,14 @@ command='flameshot gui'
 name='Flameshot'
 
 [org/cinnamon/desktop/keybindings/custom-keybindings/custom4]
-binding=['<Primary><Shift>Escape']
-command='gnome-system-monitor'
-name='Gnome System Monitor'
+binding=['<Primary><Alt>f']
+command='firefox'
+name='Firefox'
+
+[org/cinnamon/desktop/keybindings/custom-keybindings/custom5]
+binding=['<Super>t']
+command='/opt/google/chrome/google-chrome --profile-directory=Default --app-id=cfammbeebmjdpoppachopcohfchgjapd'
+name='TickTick'
 
 [org/cinnamon/desktop/keybindings/media-keys]
 calculator=['<Primary><Alt>c']
