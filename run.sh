@@ -202,6 +202,9 @@ user_do "DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/${RUSER_UID}/bus' dconf l
 echo "SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0" >> /etc/environment
 
 # ---- Programming things
+# Install apache, nginx, openssh
+apt install apache2 nginx openssh-server
+
 # Install ASDF
 show_message "Instalando ASDF"
 user_do "git clone https://github.com/asdf-vm/asdf.git ~/.asdf"
