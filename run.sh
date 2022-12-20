@@ -286,6 +286,7 @@ apt update
 apt install -y insomnia
 
 # Install anydesk
+show_message "Instalando anydesk"
 wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | apt-key add -
 echo "deb http://deb.anydesk.com/ all main" > /etc/apt/sources.list.d/anydesk-stable.list
 apt update
@@ -296,6 +297,7 @@ show_message "Definir zsh como shell padrão"
 user_do "chsh -s $(which zsh)"
 
 # store git credentials
+show_message "Permitir o git salvar credenciais de acesso localmente"
 user_do "git config --global credential.helper store"
 
 # Reiniciar
