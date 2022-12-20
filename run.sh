@@ -201,6 +201,15 @@ user_do "DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/${RUSER_UID}/bus' dconf l
 # Allow games run in fullscreen mode
 echo "SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0" >> /etc/environment
 
+# Install grub themes
+git clone https://github.com/vinceliuice/grub2-themes assets/grub2-themes
+./assets/grub2-themes/install.sh -b -t tela
+
+# Install grub-customizer
+add-apt-repository ppa:danielrichter2007/grub-customizer
+apt update
+apt install -y grub-customizer
+
 # ---- Programming things
 # Install apache, nginx, openssh
 apt install apache2 nginx openssh-server
