@@ -205,6 +205,11 @@ echo "SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0" >> /etc/environment
 # Install apache, nginx, openssh
 apt install apache2 nginx openssh-server
 
+# Install snapd
+rm /etc/apt/preferences.d/nosnap.pref
+apt update
+apt install -y snapd
+
 # Install ASDF
 show_message "Instalando ASDF"
 user_do "git clone https://github.com/asdf-vm/asdf.git ~/.asdf"
