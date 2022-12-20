@@ -202,19 +202,23 @@ user_do "DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/${RUSER_UID}/bus' dconf l
 echo "SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0" >> /etc/environment
 
 # Install grub themes
+show_message "Instalando grub themes"
 git clone https://github.com/vinceliuice/grub2-themes assets/grub2-themes
 ./assets/grub2-themes/install.sh -b -t tela
 
 # Install grub-customizer
-add-apt-repository ppa:danielrichter2007/grub-customizer
+show_message "Instalando grub-customizer"
+add-apt-repository ppa:danielrichter2007/grub-customizer -y
 apt update
 apt install -y grub-customizer
 
 # ---- Programming things
 # Install apache, nginx, openssh
-apt install apache2 nginx openssh-server
+show_message "Instalando servidores"
+apt install apache2 nginx openssh-server -y
 
 # Install snapd
+show_message "Instalando snapd"
 rm /etc/apt/preferences.d/nosnap.pref
 apt update
 apt install -y snapd
