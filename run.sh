@@ -281,6 +281,12 @@ echo "deb [trusted=yes arch=amd64] https://download.konghq.com/insomnia-ubuntu/ 
 apt update
 apt install -y insomnia
 
+# Install anydesk
+wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | apt-key add -
+echo "deb http://deb.anydesk.com/ all main" > /etc/apt/sources.list.d/anydesk-stable.list
+apt update
+apt install -y anydesk
+
 # Define zsh como shell padrão
 show_message "Definir zsh como shell padrão"
 user_do "chsh -s $(which zsh)"
