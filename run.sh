@@ -180,19 +180,19 @@ user_do "vim -c :PlugInstall -c :q -c :q"
 
 # Cinnamon menu
 show_message "Copiando arquivos tema do cinnamon-menu"
-user_do "cp -Tr ./assets/cinnamon-settings/menu@cinnamon.org ~/.cinnamon/configs/menu@cinnamon.org"
+user_do "cp -Tr ./assets/cinnamon-settings/menu@cinnamon.org ~/.config/cinnamon/spices/menu@cinnamon.org"
 
 # Cinnamon panel launcher
 show_message "Copiando arquivos tema do panel-launcher-cinnamon"
-user_do "cp -Tr ./assets/cinnamon-settings/panel-launchers@cinnamon.org ~/.cinnamon/configs/panel-launchers@cinnamon.org"
+user_do "cp -Tr ./assets/cinnamon-settings/panel-launchers@cinnamon.org ~/.config/cinnamon/spices/panel-launchers@cinnamon.org"
 
 # Cinnamon calendar
 show_message "Copiando arquivos tema do cinnamon calendar"
-user_do "cp -Tr ./assets/cinnamon-settings/calendar@cinnamon.org ~/.cinnamon/configs/calendar@cinnamon.org"
+user_do "cp -Tr ./assets/cinnamon-settings/calendar@cinnamon.org ~/.config/cinnamon/spices/calendar@cinnamon.org"
 
 # Cinnamon sound
 show_message "Copiando arquivos de configuração do sound"
-user_do "cp -Tr ./assets/cinnamon-settings/sound@cinnamon.org ~/.cinnamon/configs/sound@cinnamon.org"
+user_do "cp -Tr ./assets/cinnamon-settings/sound@cinnamon.org ~/.config/cinnamon/spices/sound@cinnamon.org"
 
 # Load dconf file
 show_message "Carregando configurações do dconf"

@@ -2,10 +2,10 @@
 filter-mode='landscape'
 maximized=true
 use-dark-theme=true
-window-height=697
-window-width=1366
-window-x=1280
-window-y=256
+window-height=953
+window-width=1280
+window-x=0
+window-y=0
 
 [com/linuxmint/install]
 flatpak-remotes=['flathub::https://dl.flathub.org/repo/::False']
@@ -21,7 +21,7 @@ autorefresh-hours=2
 hide-systray=true
 hide-window-after-update=true
 install-last-run=1667763660
-refresh-last-run=1667919345
+refresh-last-run=1671574670
 refresh-minutes=10
 show-welcome-page=false
 tracker-grace-period=30
@@ -64,6 +64,10 @@ exec='gnome-calculator'
 
 [org/cinnamon/desktop/applications/terminal]
 exec='gnome-terminal'
+
+[org/cinnamon/desktop/background]
+picture-options='stretched'
+picture-uri='file:///home/mths/.var/app/com.github.calo001.fondo/data/backgrounds/DDP_EX3gFC6eP4c.jpeg'
 
 [org/cinnamon/desktop/background/slideshow]
 delay=15
@@ -162,6 +166,7 @@ numlock-state='off'
 [org/cinnamon/sounds]
 login-enabled=false
 logout-enabled=false
+notification-enabled=false
 plug-enabled=false
 switch-enabled=false
 tile-enabled=false
@@ -196,8 +201,15 @@ dwell-time=1.2
 secondary-click-enabled=false
 secondary-click-time=1.2
 
+[org/gnome/desktop/background]
+picture-options='zoom'
+picture-uri='file:///home/mths/.var/app/com.github.calo001.fondo/data/backgrounds/DDP_EX3gFC6eP4c.jpeg'
+
 [org/gnome/desktop/interface]
 toolkit-accessibility=false
+
+[org/gnome/desktop/screensaver]
+picture-uri='file:///home/mths/.var/app/com.github.calo001.fondo/data/backgrounds/DDP_EX3gFC6eP4c.jpeg'
 
 [org/gnome/evolution-data-server]
 migrated=true
@@ -248,7 +260,7 @@ volumes-visible=false
 show-hidden-files=false
 
 [org/nemo/window-state]
-geometry='1071x592+1330+306'
+geometry='1071x592+1330+50'
 maximized=false
 sidebar-bookmark-breakpoint=5
 sidebar-width=256
@@ -276,3 +288,9 @@ use-background-color=true
 
 [org/x/viewer/window]
 maximized=true
+
+[org/x/warpinator/preferences]
+ask-for-send-permission=true
+autostart=false
+no-overwrite=true
+receiving-folder='file:///home/mths/Warpinator'
