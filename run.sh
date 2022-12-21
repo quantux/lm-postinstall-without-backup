@@ -95,6 +95,15 @@ wget "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 dpkg -i /tmp/google-chrome.deb
 apt install -fy
 
+# Install Microsoft Edge
+show_message "Instalando Microsoft Edge"
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
+sudo rm microsoft.gpg
+apt update
+apt install -y microsoft-edge-stable
+
 # Install - Adapta Nokto Fonts
 show_message "Instalando fontes Roboto e Noto Sans"
 wget "https://fonts.google.com/download?family=Roboto" -O /tmp/roboto.zip
