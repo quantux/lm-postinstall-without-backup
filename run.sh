@@ -294,6 +294,12 @@ echo "deb [trusted=yes arch=amd64] https://download.konghq.com/insomnia-ubuntu/ 
 apt update
 apt install -y insomnia
 
+# Install Postman
+show_message "Instalando Postman"
+wget https://dl.pstmn.io/download/latest/linux64 -O /tmp/Postman.tar.gz
+tar -zxvf /tmp/Postman.tar.gz -C /usr/share/
+mv assets/programs-settings/Postman.desktop /home/$RUID/.local/share/applications/
+
 # Install anydesk
 show_message "Instalando anydesk"
 wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | apt-key add -
