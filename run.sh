@@ -69,7 +69,7 @@ dpkg --add-architecture i386
 
 # Install apt packages
 show_message "Instalando pacotes"
-apt install -y build-essential zsh tmux git curl wget gpg ca-certificates gnupg lsb-release debconf-utils apt-transport-https preload blender firefox-locale-pt thunderbird-locale-pt vim gedit gimp flameshot fonts-firacode blender cheese sublime-text screenfetch python2 python3 python3-gpg python3-pip python-setuptools inkscape virtualbox virtualbox-qt vlc filezilla steam gparted pinta nmap traceroute vlc p7zip-full okular unrar rar bleachbit ubuntu-restricted-extras tlp tp-smapi-dkms acpi-call-dkms gimp-help-pt fonts-powerline calibre gnome-boxes audacity kazam htop neofetch openshot-qt python3-setuptools scrcpy whois gnupg2 software-properties-common libncurses5-dev libgmp-dev libmysqlclient-dev remmina tree obs-studio pavucontrol gir1.2-gmenu-3.0 jstest-gtk speedtest-cli pv neovim dropbox clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev ffmpeg xclip tldr
+apt install -y build-essential zsh tmux git curl wget gpg ca-certificates gnupg lsb-release debconf-utils apt-transport-https preload blender firefox-locale-pt thunderbird-locale-pt vim gedit gimp flameshot fonts-firacode blender cheese sublime-text screenfetch python2 python3 python3-gpg python3-pip python-setuptools inkscape virtualbox virtualbox-qt vlc filezilla steam gparted pinta nmap traceroute vlc p7zip-full okular unrar rar bleachbit ubuntu-restricted-extras tlp tp-smapi-dkms acpi-call-dkms gimp-help-pt fonts-powerline calibre gnome-boxes audacity kazam htop neofetch openshot-qt python3-setuptools scrcpy whois gnupg2 software-properties-common libncurses5-dev libgmp-dev libmysqlclient-dev remmina tree obs-studio pavucontrol gir1.2-gmenu-3.0 jstest-gtk speedtest-cli pv neovim dropbox clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev ffmpeg xclip tldr plymouth
 
 # Instalando virtualbox-guest-x11
 show_message "Instalando virtualbox-guest-x11"
@@ -221,6 +221,13 @@ show_message "Instalando grub-customizer"
 add-apt-repository ppa:danielrichter2007/grub-customizer -y
 apt update
 apt install -y grub-customizer
+
+# Customize Plymouth theme
+git clone https://github.com/adi1090x/plymouth-themes /usr/share/themes/plymouth-themes
+cp -r /usr/share/themes/plymouth-themes/pack_2/hexagon_alt /usr/share/plymouth/themes/
+update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/hexagon_alt/hexagon_alt.plymouth 100
+sudo update-alternatives --config default.plymouth
+update-initramfs -u
 
 # ---- Programming things
 # Install apache, nginx, openssh
