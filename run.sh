@@ -222,14 +222,6 @@ add-apt-repository ppa:danielrichter2007/grub-customizer -y
 apt update
 apt install -y grub-customizer
 
-# Customize Plymouth theme
-show_message "Instalando tema do plymouth"
-git clone https://github.com/adi1090x/plymouth-themes /usr/share/themes/plymouth-themes
-cp -r /usr/share/themes/plymouth-themes/pack_2/hexagon_alt /usr/share/plymouth/themes/
-update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/hexagon_alt/hexagon_alt.plymouth 100
-sudo update-alternatives --config default.plymouth
-update-initramfs -u
-
 # ---- Programming things
 # Install apache, nginx, openssh
 show_message "Instalando servidores"
@@ -316,13 +308,21 @@ echo "deb http://deb.anydesk.com/ all main" > /etc/apt/sources.list.d/anydesk-st
 apt update
 apt install -y anydesk
 
-# Define zsh como shell padrão
-show_message "Definir zsh como shell padrão"
-user_do "chsh -s $(which zsh)"
-
 # store git credentials
 show_message "Permitir o git salvar credenciais de acesso localmente"
 user_do "git config --global credential.helper store"
+
+# Customize Plymouth theme
+show_message "Instalando tema do plymouth"
+git clone https://github.com/adi1090x/plymouth-themes /usr/share/themes/plymouth-themes
+cp -r /usr/share/themes/plymouth-themes/pack_2/hexagon_alt /usr/share/plymouth/themes/
+update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/hexagon_alt/hexagon_alt.plymouth 100
+sudo update-alternatives --config default.plymouth
+update-initramfs -u
+
+# Define zsh como shell padrão
+show_message "Definir zsh como shell padrão"
+user_do "chsh -s $(which zsh)"
 
 # Reiniciar
 show_message ""
