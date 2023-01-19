@@ -222,16 +222,20 @@ add-apt-repository ppa:danielrichter2007/grub-customizer -y
 apt update
 apt install -y grub-customizer
 
-# ---- Programming things
-# Install apache, nginx, openssh
-show_message "Instalando servidores"
-apt install apache2 nginx openssh-server -y
-
 # Install snapd
 show_message "Instalando snapd"
 rm /etc/apt/preferences.d/nosnap.pref
 apt update
 apt install -y snapd
+
+# Install bitwarden
+show_message "Instalando bitwarden"
+snap install bitwarden
+
+# ---- Programming things
+# Install apache, nginx, openssh
+show_message "Instalando servidores"
+apt install apache2 nginx openssh-server -y
 
 # Install ASDF
 show_message "Instalando ASDF"
