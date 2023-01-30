@@ -127,6 +127,10 @@ cp ./assets/programs-settings/virtualbox.desktop /usr/share/applications/virtual
 show_message "Instalando Sweet Theme"
 tar -xf ./assets/themes/Sweet-mars-v40.tar.xz -C /usr/share/themes
 
+# Install Sweet Theme
+show_message "Instalando Flat Remix theme"
+tar -xf ./assets/themes/Flat-Remix-GTK-Blue-Darkest-Solid-NoBorder.tar.xz -C /usr/share/themes
+
 # La-Capitaine Icons
 show_message "Instalando ícones La-Capitaine"
 tar -zxvf ./assets/icons/la-capitaine.tar.gz -C /usr/share/icons/
