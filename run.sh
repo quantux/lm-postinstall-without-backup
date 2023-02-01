@@ -184,7 +184,7 @@ show_message "Copiando arquivos de configuração para a pasta home"
 git clone https://github.com/quantux/home /tmp/home
 shopt -s dotglob
 mv /tmp/home/* /home/$RUID/
-chown -R $RUID:$RUID .git
+chown -R $RUID:$RUID /home/$RUID/.git
 
 # Install vim-plug
 show_message "Instalando Vim-Plug"
