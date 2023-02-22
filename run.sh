@@ -75,6 +75,9 @@ apt install -y build-essential zsh tmux git curl wget gpg ca-certificates gnupg 
 show_message "Instalando virtualbox-guest-x11"
 yes Y | apt install -y virtualbox-guest-x11
 
+# Add user to vbox group
+usermod -aG vboxusers $RUID
+
 # Instalando wireshark
 show_message "Instalando wireshark"
 echo "wireshark-common wireshark-common/install-setuid boolean true" | debconf-set-selections
