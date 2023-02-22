@@ -69,7 +69,7 @@ dpkg --add-architecture i386
 
 # Install apt packages
 show_message "Instalando pacotes"
-apt install -y build-essential zsh tmux git curl wget gpg ca-certificates gnupg lsb-release debconf-utils apt-transport-https preload blender firefox-locale-pt thunderbird-locale-pt vim gedit gimp flameshot fonts-firacode blender cheese sublime-text screenfetch python2 python3 python3-gpg python3-pip python-setuptools inkscape virtualbox virtualbox-qt vlc filezilla steam gparted pinta nmap traceroute vlc p7zip-full okular unrar rar bleachbit ubuntu-restricted-extras tlp tp-smapi-dkms acpi-call-dkms gimp-help-pt fonts-powerline calibre gnome-boxes audacity kazam htop neofetch openshot-qt python3-setuptools scrcpy whois gnupg2 software-properties-common libncurses5-dev libgmp-dev libmysqlclient-dev remmina tree obs-studio pavucontrol gir1.2-gmenu-3.0 jstest-gtk speedtest-cli pv neovim dropbox clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev ffmpeg xclip tldr plymouth wine
+apt install -y build-essential zsh tmux git curl wget gpg ca-certificates gnupg lsb-release debconf-utils apt-transport-https preload blender firefox-locale-pt thunderbird-locale-pt vim gedit gimp flameshot fonts-firacode blender cheese sublime-text screenfetch python2 python3 python3-gpg python3-pip python-setuptools inkscape virtualbox virtualbox-qt vlc filezilla steam gparted pinta nmap traceroute vlc p7zip-full okular unrar rar bleachbit ubuntu-restricted-extras tlp tp-smapi-dkms acpi-call-dkms gimp-help-pt fonts-powerline calibre gnome-boxes audacity kazam htop neofetch openshot-qt python3-setuptools scrcpy whois gnupg2 software-properties-common libncurses5-dev libgmp-dev libmysqlclient-dev remmina tree obs-studio pavucontrol gir1.2-gmenu-3.0 jstest-gtk speedtest-cli pv neovim dropbox clang cmake ninja-build pkg-config libyaml-dev libgtk-3-dev liblzma-dev ffmpeg xclip tldr plymouth wine
 
 # Instalando virtualbox-guest-x11
 show_message "Instalando virtualbox-guest-x11"
@@ -89,6 +89,10 @@ show_message "Instalando pacotes flatpak"
 flatpak install -y --noninteractive flathub com.github.calo001.fondo
 flatpak install -y --noninteractive flathub com.github.tchx84.Flatseal
 
+# Update flatpak
+show_message "Atualizando pacotes flatpak"
+flatpak update -y
+
 # Install Chrome
 show_message "Instalando Google Chrome"
 wget "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" -O /tmp/google-chrome.deb
@@ -103,6 +107,9 @@ sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge sta
 sudo rm microsoft.gpg
 apt update
 apt install -y microsoft-edge-stable
+
+# Remove dev apt list
+rm /etc/apt/sources.list.d/microsoft-edge-dev.list
 
 # Install - Adapta Nokto Fonts
 show_message "Instalando fontes Roboto e Noto Sans"
@@ -244,12 +251,12 @@ apt install apache2 nginx openssh-server -y
 # Install ASDF
 show_message "Instalando ASDF"
 user_do "git clone https://github.com/asdf-vm/asdf.git ~/.asdf"
-user_zsh_do "asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git"
 user_zsh_do "asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git"
-user_zsh_do "asdf install ruby latest"
+user_zsh_do "asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git"
 user_zsh_do "asdf install nodejs latest"
-user_zsh_do "asdf global ruby latest"
 user_zsh_do "asdf global nodejs latest"
+user_zsh_do "asdf install ruby latest"
+user_zsh_do "asdf global ruby latest"
 
 # Install rails
 show_message "Instalando Ruby on Rails"
@@ -315,6 +322,10 @@ wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | apt-key add -
 echo "deb http://deb.anydesk.com/ all main" > /etc/apt/sources.list.d/anydesk-stable.list
 apt update
 apt install -y anydesk
+
+# remove legacy trusted gpg key
+apt-key export CDFFDE29 | sudo gpg --dearmour -o /etc/apt/trusted.gpg.d/anydesk.gpg
+apt-key --keyring /etc/apt/trusted.gpg del CDFFDE29
 
 # store git credentials
 show_message "Permitir o git salvar credenciais de acesso localmente"
