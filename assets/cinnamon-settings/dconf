@@ -2,10 +2,10 @@
 filter-mode='landscape'
 maximized=true
 use-dark-theme=true
-window-height=953
-window-width=1280
-window-x=0
-window-y=0
+window-height=697
+window-width=1366
+window-x=1280
+window-y=256
 
 [com/linuxmint/install]
 flatpak-remotes=['flathub::https://dl.flathub.org/repo/::False']
@@ -21,7 +21,7 @@ autorefresh-hours=2
 hide-systray=true
 hide-window-after-update=true
 install-last-run=1667763660
-refresh-last-run=1671574670
+refresh-last-run=1677030254
 refresh-minutes=10
 show-welcome-page=false
 tracker-grace-period=30
@@ -67,7 +67,7 @@ exec='gnome-terminal'
 
 [org/cinnamon/desktop/background]
 picture-options='stretched'
-picture-uri='file:///home/mths/.var/app/com.github.calo001.fondo/data/backgrounds/DDP_EX3gFC6eP4c.jpeg'
+picture-uri='file:///home/mths/.var/app/com.github.calo001.fondo/data/backgrounds/Nathan Anderson_eYcleKoTvr8.jpeg'
 
 [org/cinnamon/desktop/background/slideshow]
 delay=15
@@ -77,7 +77,7 @@ image-source='xml:///usr/share/cinnamon-background-properties/linuxmint-vanessa.
 cursor-blink-time=1200
 cursor-size=24
 cursor-theme='Adwaita'
-gtk-theme='Sweet-mars-v40'
+gtk-theme='Flat-Remix-GTK-Blue-Darkest-Solid-NoBorder'
 icon-theme='la-capitaine'
 
 [org/cinnamon/desktop/keybindings]
@@ -203,13 +203,13 @@ secondary-click-time=1.2
 
 [org/gnome/desktop/background]
 picture-options='zoom'
-picture-uri='file:///home/mths/.var/app/com.github.calo001.fondo/data/backgrounds/DDP_EX3gFC6eP4c.jpeg'
+picture-uri='file:///home/mths/.var/app/com.github.calo001.fondo/data/backgrounds/Nathan Anderson_eYcleKoTvr8.jpeg'
 
 [org/gnome/desktop/interface]
 toolkit-accessibility=false
 
 [org/gnome/desktop/screensaver]
-picture-uri='file:///home/mths/.var/app/com.github.calo001.fondo/data/backgrounds/DDP_EX3gFC6eP4c.jpeg'
+picture-uri='file:///home/mths/.var/app/com.github.calo001.fondo/data/backgrounds/Nathan Anderson_eYcleKoTvr8.jpeg'
 
 [org/gnome/evolution-data-server]
 migrated=true
@@ -229,7 +229,7 @@ default-size-rows=33
 font='Fira Code 10'
 foreground-color='rgb(182,182,182)'
 use-system-font=false
-use-theme-colors=false
+use-theme-colors=true
 use-theme-transparency=true
 
 [org/gtk/settings/color-chooser]
@@ -260,7 +260,7 @@ volumes-visible=false
 show-hidden-files=false
 
 [org/nemo/window-state]
-geometry='1071x592+1330+50'
+geometry='1071x592+1409+339'
 maximized=false
 sidebar-bookmark-breakpoint=5
 sidebar-width=256
